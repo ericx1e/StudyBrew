@@ -23,11 +23,14 @@
 }
 
 .table{
+    table-layout: fixed;
     border-radius: 20px;
+    border-collapse: collapse; 
 }
 
-.table-container {
+.table-container-container {
     height: 60vh;
+    overflow-y: auto; /* add scroll bar for vertical overflow */
 }
 
 .text-signed-in {
@@ -48,3 +51,26 @@
     float: right;
 }
 
+/* Set styles for small screens */
+@media (max-width: 600px) {
+    .table-container-container {
+      height: auto; /* remove fixed height */
+      overflow-y: auto; /* hide scrollbar */
+      width: 100%;
+    }
+    
+    
+    .table td::before {
+      content: attr(data-label); /* add cell label */
+      float: left; /* float label to left */
+      font-weight: bold; /* bold label text */
+    }
+    .col-right {
+        display: none; /* hide the col-right class */
+      }
+      .col-left {
+        width: 100%;
+        float: left;
+    }
+  }
+  

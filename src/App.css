@@ -14,3 +14,15 @@
 .body {
     height: 93.3vh;
 }
+
+@media (max-width: 600px) {
+  .hero-foot {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .content {
+    padding-bottom: 60px; /* add padding for the height of the hero-foot */
+  }
+}
