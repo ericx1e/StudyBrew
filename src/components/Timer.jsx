@@ -1,5 +1,5 @@
 function Timer() {
-    return (<p>hi</p>)
+    return (<p>timer</p>)
 }
 
 export default Timer
