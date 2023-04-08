@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import "./sass/mystyles.scss"
 import "bulma/css/bulma.css"
+import "./sass/mystyles.scss"
 import './App.css'
 import Timer from "./components/Timer"
 import User from "./components/User"
