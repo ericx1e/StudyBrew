@@ -1,19 +1,21 @@
 import "./Timer.css"
 import Wave from 'react-wavify'
-import { useState } from "react";
 
-function Timer({ seconds, isRunning, startTimer, stopTimer, resetTimer }) {
-    const minWaveHeight = -140;
-    const [waveHeight, setWaveHeight] = useState(190);
+function Timer({ seconds, initialTime, isRunning, startTimer, stopTimer, resetTimer }) {
+
+    const minWaveHeight = 200;
 
     const secondsToString = () => {
         const m = parseInt(seconds / 60);
         const s = seconds % 60;
         return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
     }
+    const waveHeight = seconds / initialTime * minWaveHeight;
+    // console.log(waveHeight)
 
     return (
         <div className="timer-container">
+            {isRunning && <div className="drop"></div>}
             {!isRunning && (
                 <button onClick={startTimer}>Start</button>
             )}
@@ -35,7 +37,7 @@ function Timer({ seconds, isRunning, startTimer, stopTimer, resetTimer }) {
                     }}
                 />
             </div>
-            <div onClick={() => { setWaveHeight(waveHeight - 5) }} className="cup"></div>
+            <div className="cup"></div>
         </div>
     );
 }

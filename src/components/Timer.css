@@ -28,7 +28,7 @@
 
 .wave {
     position: absolute;
-    top: 40%;
+    top: 35%;
     bottom: 10%;
     left: 50%;
     transform: translate(-50%);
@@ -100,4 +100,49 @@
 
 .timer.paused {
     opacity: 1;
+}
+
+/* div {
+    margin: 175px auto;
+} */
+
+.drop {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    top: -30px;
+    margin: 0 auto;
+    background: #FFF;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    -moz-animation-name: drip;
+    -webkit-animation-name: drip;
+    animation-name: drip;
+    -moz-animation-timing-function: cubic-bezier(1, 0, .91, .19);
+    -webkit-animation-timing-function: cubic-bezier(1, 0, .91, .19);
+    animation-timing-function: cubic-bezier(1, 0, .91, .19);
+    -moz-animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+.drop:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 30px solid rgba(255, 255, 255, 1);
+    top: -22px;
+}
+
+@keyframes drip {
+    to {
+        top: 490px;
+    }
 }

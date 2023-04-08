@@ -8,10 +8,10 @@ import Settings from "./components/Settings"
 import About from "./components/About"
 
 function App() {
-  let totalTime = 2;
+  let initialTime = 5; //seconds
   const [tab, setTab] = useState("timer");
 
-  const [seconds, setSeconds] = useState(totalTime);
+  const [seconds, setSeconds] = useState(initialTime);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef(null);
 
@@ -32,7 +32,7 @@ function App() {
   const resetTimer = () => {
     clearInterval(intervalRef.current);
     setIsRunning(false);
-    setSeconds(totalTime);
+    setSeconds(initialTime);
     document.getElementById("timer").classList.remove("paused");
   };
 
@@ -52,7 +52,7 @@ function App() {
 
   switch (tab) {
     case "timer":
-      content = <Timer seconds={seconds} isRunning={isRunning} startTimer={startTimer} stopTimer={stopTimer} resetTimer={resetTimer} />
+      content = <Timer seconds={seconds} initialTime={initialTime} isRunning={isRunning} startTimer={startTimer} stopTimer={stopTimer} resetTimer={resetTimer} />
       break;
     case "user":
       content = <User />
