@@ -5,6 +5,7 @@ import './App.css'
 import Timer from "./components/Timer"
 import User from "./components/User"
 import Settings from "./components/Settings"
+import About from "./components/About"
 
 
 function App() {
@@ -21,6 +22,10 @@ function App() {
       break;
     case "settings":
       content = <Settings />
+      break;
+    case "about":
+      content = <About />
+      break;
   }
 
   return (
