@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Sketch from "react-p5";
 import "./Timer.css"
 import Wave from 'react-wavify'
@@ -25,6 +26,10 @@ function Drop(p5) {
         s *= 1.005
         this.xv *= 0.997
     }
+=======
+function Timer() {
+    return (<p>timer</p>)
+>>>>>>> 7a90704d65ee98acb7eecf6dac97414ebb88ffe1
 }
 
 const drops = []

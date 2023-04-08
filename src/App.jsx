@@ -1,17 +1,26 @@
 import { useState } from 'react'
 import "./sass/mystyles.scss"
+import "bulma/css/bulma.css"
+import './App.css'
 import Timer from "./components/Timer"
+import User from "./components/User"
+import Settings from "./components/Settings"
 
 
 function App() {
   const [tab, setTab] = useState("timer");
 
-  let content = <h1>OOPS</h1>
+  let content = <h1>FATAL</h1>
 
   switch (tab) {
     case "timer":
       content = <Timer />
       break;
+    case "user":
+      content = <User />
+      break;
+    case "settings":
+      content = <Settings />
   }
 
   return (
