@@ -72,7 +72,7 @@ function App() {
       </div>
 
       <div className="footer">
-        <div className="tabs is-centered is-boxed is-medium is-fullwidth">
+        <div className="tabs is-centered is-medium is-fullwidth">
           <ul>
             <li className={tab == "timer" ? "is-active" : ""}>
               <a onClick={() => setTab("timer")}>
