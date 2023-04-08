@@ -1,0 +1,20 @@
+// $footer-height: 10px;
+// $tabs-boxed-link-active-background-color: #EECA81;
+
+// $hero-colors: #EECA81;
+
+@import "bulma/bulma.sass";
+
+.hero-body {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #EECA81;
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+.tabs {
+    // background-color: #ba8e34;
+}
