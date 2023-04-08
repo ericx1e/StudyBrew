@@ -2,10 +2,102 @@
     width: 100%;
     height: 100%;
 } */
-.wave {
-    height: 100vh;
-    width: fit-content;
+.timer-container {
+    background-image: url("/Background.png");
+    background-position: center;
+    background-size: 115% auto;
+    background-repeat: no-repeat;
+    /* background-image: ; */
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    /* width: fit-content; */
 
     overflow: hidden;
-    block-size: fit-content;
+    /* block-size: fit-content; */
+}
+
+.timer-container h1 {
+    text-align: center;
+    font-size: 100px;
+    /* text-shadow: 1px; */
+    padding: 50px;
+}
+
+.wave {
+    position: absolute;
+    top: 40%;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.teacup-image {
+    /* transform: translate(0, 7%)scale(1.5); */
+}
+
+/* .teacup-image:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    transition: 1s ease;
+} */
+.cup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    background-image: url("/teacup2.png");
+    background-position: center;
+    background-size: 115% auto;
+    background-repeat: no-repeat;
+}
+
+.grow {
+    width: 600px;
+    height: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    background-image: url("/teacup2.png");
+    background-position: center;
+    background-size: 115% auto;
+    background-repeat: no-repeat;
+
+    -webkit-mask-image: url('/cupmask.png');
+    mask-image: url("/cupmask.png");
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: 115% auto;
+    mask-size: 115% auto;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.teacup-image {
+    width: 700px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.timer {
+    opacity: 0.1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.timer.paused {
+    opacity: 1;
 }
