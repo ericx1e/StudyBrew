@@ -3,6 +3,7 @@ import "bulma/css/bulma.css"
 import './App.css'
 import Timer from "./components/Timer"
 import User from "./components/User"
+import Settings from "./components/Settings"
 
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
     case "user" :
       content = <User />
       break;
+    case "settings":
+      content = <Settings />
   }
 
   return (
@@ -42,7 +45,7 @@ function App() {
           <li className={tab == "settings" ? "is-active" : ""}>
             <a className="tabs" onClick={() => setTab("settings")}>
               <span className="icon is-small"><i className="fas fa-film" aria-hidden="true"></i></span>
-              <span>Videos</span>
+              <span>Settings</span>
             </a>
           </li>
         </ul>

@@ -8,6 +8,7 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import 'firebase/compat/analytics';
 import 'firebase/compat/functions'
+import "./User.css"
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -29,6 +30,7 @@ firebase.initializeApp ({
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 const analytics = firebase.analytics();
+const functions = firebase.functions();
 
 
 function SignIn() {
@@ -40,8 +42,7 @@ function SignIn() {
 
   return (
     <>
-      <button className="button" onClick={signInWithGoogle}>Sign in with Google</button>
-      <p>Do not violate the community guidelines or you will be banned for life!</p>
+      <button className="button is-primary" onClick={signInWithGoogle}>Sign in with Google</button>
     </>
   )
 
@@ -56,27 +57,14 @@ function SignOut() {
 function User() {
 
     const [user] = useAuthState(auth);
-    // exports.createAccountDocument = auth.user().onCreate((user) => {
-    //     // get user data from the auth trigger
-    //     const uid = auth.currentUser; // The UID of the user.
-    //     //const email = user.email; // The email of the user.
-    //     //const displayName = user.displayName; // The display name of the user.
-      
-    //     // set account  doc  
-    //     const data = {  
-    //         laststudied: firebase.firestore.FieldValue.serverTimestamp(),
-    //         studyhours: 0,
-    //         uid
-    //     }
-    //     // write new doc to collection
-    //     return firestore.collection('data').add(data); 
-    //   });
+
       
 
     return (
-        <>
-            {user ? <SignOut /> : <SignIn />}
-        </>
+        <div className="user-page">
+            <img className="tea-img" src="/tea_png.png" alt="image" />
+            {user ? <SignOut className = "sign-button"/> : <SignIn className="sign-button"/>}
+        </div>
     )
 }
   

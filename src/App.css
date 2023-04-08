@@ -1,7 +1,12 @@
 .app {
   background-color: #EECA81;
+  height: 100%;
 }
 
 .tabs {
   background-color: #EECA81;
+}
+
+.body {
+  height: 95vh;
 }
