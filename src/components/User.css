@@ -1,5 +1,14 @@
 .user-page {
-    padding: 100px;
     height:100%;
+    float: right;
+    padding: 2vw;
+}
+
+.tea-img {
+    padding: 10vw;
+}
+
+.sign-button {
+    padding: 40px;
 }
 

@@ -50,7 +50,9 @@ function SignIn() {
 
 function SignOut() {
   return auth.currentUser && (
-    <button className="button" onClick={() => auth.signOut()}>Sign Out</button>
+    <>
+      <button className="button" onClick={() => auth.signOut()}>Sign Out</button>
+    </>
   )
 }
 
@@ -62,7 +64,7 @@ function User() {
 
     return (
         <div className="user-page">
-            <img className="tea-img" src="/tea_png.png" alt="image" />
+            {/* <img className="tea-img" src="/tea_png.png" alt="image" /> */}
             {user ? <SignOut className = "sign-button"/> : <SignIn className="sign-button"/>}
         </div>
     )
