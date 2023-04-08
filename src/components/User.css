@@ -1,14 +1,50 @@
 .user-page {
     height:100%;
+    width: 100%;
     float: right;
     padding: 2vw;
+    margin-left: auto;
+
+}
+
+.header {
+    width: 100%;
+    text-align: right;
+}
+
+.col-left {
+    width: 50%;
+    float: left;
+}
+
+.col-right {
+    width: 50%;
+    float: right;
+}
+
+.table{
+    border-radius: 20px;
+}
+
+.table-container {
+    height: 60vh;
+}
+
+.text-signed-in {
+    font-size: 10vh;
+    padding-bottom: 3vh;
+}
+
+.text-signed-out {
+    font-size: 5vh;
+    padding-bottom: 3vh;
 }
 
 .tea-img {
-    padding: 10vw;
+
 }
 
 .sign-button {
-    padding: 40px;
+    float: right;
 }
 

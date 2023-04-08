@@ -24,8 +24,8 @@ function App() {
   }
 
   return (
-    <section className='hero is-fullheight'>
-      <div className="hero-body">
+    <section className='app'>
+      <div className="body">
         {content}
       </div>
 

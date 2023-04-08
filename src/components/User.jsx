@@ -32,6 +32,72 @@ const firestore = firebase.firestore();
 const analytics = firebase.analytics();
 const functions = firebase.functions();
 
+function TableRow(props) {
+  const item = props.session;
+  console.log(props.session)
+  return (
+    <tr>
+      <td>
+        {item.time && item.time.toDate().toDateString()}
+      </td>
+      <td>
+        {item.sessionstudycount && item.sessionstudycount}
+      </td>
+      <td>
+        {item.time && item.time.toDate().toLocaleTimeString('en-US')}
+      </td>
+      <td>
+        {item.endtime && item.endtime.toDate().toLocaleTimeString('en-US')}
+      </td>
+    </tr>
+  )
+}
+
+function DisplayStats() {
+  const userRef = firestore.collection("studysessions");
+  const query = userRef.where("uid", "==", auth.currentUser.uid);
+  const [sessions] = useCollectionData(query);
+  const userProfile = firestore.collection("data").where("uid", "==", auth.currentUser.uid);
+
+  return (
+    <div className="table-container">
+      <table className="table">
+        <thead>
+            <tr>
+              <th>
+                Date
+              </th>
+              <th>
+                Minutes Studied
+              </th>
+              <th>
+                Start Time
+              </th>
+              <th>
+                End Time
+              </th>
+            </tr>
+        </thead>
+        <tbody>
+          {console.log(auth.currentUser.displayName)}
+          {sessions && sessions.map(item => <TableRow key = {item.time} session = {item} />)}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+function SaveTime(hours) {
+  const studysession = firestore.collection("studysessions");
+  const uid = auth.currentUser;
+
+  studysession.add({
+    sesssionstudycount: hours,
+    time: firebase.firestore.FieldValue.serverTimeStamp(),
+    uid,
+  })
+
+
+}
 
 function SignIn() {
 
@@ -64,8 +130,14 @@ function User() {
 
     return (
         <div className="user-page">
-            {/* <img className="tea-img" src="/tea_png.png" alt="image" /> */}
-            {user ? <SignOut className = "sign-button"/> : <SignIn className="sign-button"/>}
+            <div className='header'>{user ? <SignOut className = "sign-button"/> : <SignIn className="sign-button"/>}</div>
+            <div className='col-left'>
+              <h1 className={user ? "text-signed-in" : "text-signed-out"}>{user ? auth.currentUser.displayName : "Sign In To View Your Studying Stats"}</h1>
+              {user ? <DisplayStats /> : <></>}
+              {/* {userProfile && userProfile.studyhours} */}
+            </div>
+            <div className="col-right"><img className="tea-img" src="/tea_png.png" alt="image" /></div>
+            
         </div>
     )
 }
