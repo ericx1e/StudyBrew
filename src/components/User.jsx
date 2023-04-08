@@ -11,7 +11,7 @@ import 'firebase/compat/functions'
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-
+import { doc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -46,7 +46,24 @@ function SignIn() {
   )
 
 }
+function DisplayStats() {
+  const userRef = firestore.collection("studysessions");
+  const [sessions] = userRef.where("uid", "==", auth.currentUser.uid);
+  const userProfile = firestore.collection("data").where("uid", "==", auth.currentUser.uid);
+  
+}
+function SaveTime(hours) {
+  const studysession = firestore.collection("studysessions");
+  const uid = auth.currentUser;
 
+  studysession.add({
+    sesssionstudycount: hours,
+    time: firebase.firestore.FieldValue.serverTimeStamp(),
+    uid,
+  })
+
+
+}
 function SignOut() {
   return auth.currentUser && (
     <button className="button" onClick={() => auth.signOut()}>Sign Out</button>
@@ -56,22 +73,6 @@ function SignOut() {
 function User() {
 
     const [user] = useAuthState(auth);
-    // exports.createAccountDocument = auth.user().onCreate((user) => {
-    //     // get user data from the auth trigger
-    //     const uid = auth.currentUser; // The UID of the user.
-    //     //const email = user.email; // The email of the user.
-    //     //const displayName = user.displayName; // The display name of the user.
-      
-    //     // set account  doc  
-    //     const data = {  
-    //         laststudied: firebase.firestore.FieldValue.serverTimestamp(),
-    //         studyhours: 0,
-    //         uid
-    //     }
-    //     // write new doc to collection
-    //     return firestore.collection('data').add(data); 
-    //   });
-      
 
     return (
         <>
