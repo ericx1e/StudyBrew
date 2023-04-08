@@ -1,0 +1,39 @@
+.card-container-1 {
+    padding: 2vw;
+    float: left;
+    width: 52vw;
+}
+
+.card-container-2 {
+    padding: 2vw;
+    float: right;
+    width: 40vw;
+    margin-top: 13vw;
+}
+
+.card-container-3 {
+    padding: 2vw;
+    float: left;
+    width: 50vw;
+    margin-top:12vh;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 10px 10px #4a4a4a; 
+    border-style: solid;
+    border-width: 2px;
+}
+
+.card {
+    flex: 1;
+    font-size: 1.1vw;
+    color: #000000;
+}
+
+.img {
+    flex: 2;
+    width: 15vw;
+    padding-left: 0vw;
+}
