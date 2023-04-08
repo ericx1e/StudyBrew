@@ -1,33 +1,48 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import "bulma/css/bulma.css"
+import Timer from "./components/Timer"
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tab, setTab] = useState("timer");
+
+  let content = <h1>OOPS</h1>
+
+  switch(tab) {
+    case "timer": 
+      content = <Timer />
+      break;
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className = "App">
+      <div className="body">
+        {content}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div className="tabs is-centered is-boxed is-medium">
+        <ul>
+          <li className={tab == "timer" ? "is-active" : ""}>
+            <a onClick={() => setTab("timer")}>
+              <span className="icon is-small"><i className="fas fa-image" aria-hidden="true"></i></span>
+              <span>Pictures</span>
+            </a>
+          </li>
+          <li className={tab == "user" ? "is-active" : ""}>
+            <a onClick={() => setTab("user")}>
+              <span className="icon is-small"><i className="fas fa-music" aria-hidden="true"></i></span>
+              <span>Music</span>
+            </a>
+          </li>
+          <li className={tab == "settings" ? "is-active" : ""}>
+            <a onClick={() => setTab("settings")}>
+              <span className="icon is-small"><i className="fas fa-film" aria-hidden="true"></i></span>
+              <span>Videos</span>
+            </a>
+          </li>
+        </ul>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
