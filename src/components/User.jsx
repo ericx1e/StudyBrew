@@ -12,6 +12,7 @@ import "./User.css"
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { doc } from 'firebase/firestore';
 
 
 // Your web app's Firebase configuration
@@ -59,8 +60,11 @@ function DisplayStats() {
   const [sessions] = useCollectionData(query);
   const userQuery = firestore.collection("data").where("uid", "==", auth.currentUser.uid)
   const userProfile = useCollectionData(userQuery);
+  const filtered = userProfile.filter(Boolean);
 
   return (
+    <div className= "stat-display">
+    <h3>Total Time Studying: {filtered[0][0] ? filtered[0][0].studyhours :<></> }</h3>
     <div className="table-container-container">
       <div className="table-contain">
         <table className="table">
@@ -87,7 +91,7 @@ function DisplayStats() {
         </table>
       </div>
     </div>
-    
+    </div>
   )
 }
 function SaveTime(hours) {
@@ -129,7 +133,7 @@ function SignOut() {
 function User() {
 
     const [user] = useAuthState(auth);
-
+    
       
 
     return (
@@ -137,11 +141,10 @@ function User() {
             <div className='header'>{user ? <SignOut className = "sign-button"/> : <SignIn className="sign-button"/>}</div>
             <div className='col-left'>
               <h1 className={user ? "text-signed-in" : "text-signed-out"}>{user ? auth.currentUser.displayName : "Sign In To View Your Studying Stats"}</h1>
-              {/* {userProfile && userProfile.studyhours} */}
+              
               {user ? <DisplayStats /> : <></>}
             </div>
             <div className="col-right"><img className="tea-img" src="/tea_png.png" alt="image" /></div>
-            
         </div>
     )
 }
