@@ -12,7 +12,7 @@ function App() {
   const [initialBreakTime, setInitialBreakTime] = useState(5 * 60);
   const [tab, setTab] = useState("timer");
 
-  const [seconds, setSeconds] = useState(initialTime);
+  const [seconds, setSeconds] = useState(totalTime);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef(null);
 
@@ -33,7 +33,7 @@ function App() {
   const resetTimer = () => {
     clearInterval(intervalRef.current);
     setIsRunning(false);
-    setSeconds(initialTime);
+    setSeconds(totalTime);
     document.getElementById("timer").classList.remove("paused");
   };
 
@@ -65,7 +65,7 @@ function App() {
 
   switch (tab) {
     case "timer":
-      content = <Timer seconds={seconds} initialTime={initialTime} isRunning={isRunning} startTimer={startTimer} stopTimer={stopTimer} resetTimer={resetTimer} />
+      content = <Timer seconds={seconds} isRunning={isRunning} startTimer={startTimer} stopTimer={stopTimer} resetTimer={resetTimer} />
       break;
     case "user":
       content = <User />
@@ -85,7 +85,7 @@ function App() {
       </div>
 
       <div className="footer">
-        <div className="tabs is-centered is-boxed is-medium is-fullwidth">
+        <div className="tabs is-centered is-medium is-fullwidth">
           <ul>
             <li className={tab == "timer" ? "is-active" : ""}>
               <a onClick={() => setTab("timer")}>

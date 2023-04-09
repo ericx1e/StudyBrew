@@ -12,7 +12,7 @@ import "./User.css"
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { doc } from 'firebase/firestore';
+import { doc, getDocs } from 'firebase/firestore';
 
 
 // Your web app's Firebase configuration
@@ -35,7 +35,6 @@ const functions = firebase.functions();
 
 function TableRow(props) {
   const item = props.session;
-  console.log(props.session)
   return (
     <tr>
       <td>
@@ -53,18 +52,23 @@ function TableRow(props) {
     </tr>
   )
 }
+function Hourcount(props) {
+  const user = props.user;
+  return (
+    <h3>Total Time Studying:{user.studyhours}</h3>
+  )
+}
 
 function DisplayStats() {
+
   const userRef = firestore.collection("studysessions");
   const query = userRef.where("uid", "==", auth.currentUser.uid);
   const [sessions] = useCollectionData(query);
   const userQuery = firestore.collection("data").where("uid", "==", auth.currentUser.uid)
-  const userProfile = useCollectionData(userQuery);
-  const filtered = userProfile.filter(Boolean);
-
+  const [userProfile] =  useCollectionData(userQuery)
   return (
     <div className= "stat-display">
-    <h3>Total Time Studying: {filtered[0][0] ? filtered[0][0].studyhours :<></> }</h3>
+      {userProfile && userProfile.map(user =><Hourcount key ={user.uid} user= {user}/>)}
     <div className="table-container-container">
       <div className="table-contain">
         <table className="table">
@@ -85,7 +89,7 @@ function DisplayStats() {
               </tr>
           </thead>
           <tbody>
-            {console.log(auth.currentUser.displayName)}
+            
             {sessions && sessions.map(item => <TableRow key = {item.time} session = {item} />)}
           </tbody>
         </table>

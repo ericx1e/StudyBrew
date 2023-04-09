@@ -39,3 +39,8 @@ input::-webkit-inner-spin-button {
     font-size: large;
     padding-right: 1rem;
 }
+.slider input {
+   height: 2rem;
+   width: 20rem;
+  
+}
