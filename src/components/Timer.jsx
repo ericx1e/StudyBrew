@@ -17,11 +17,11 @@ function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer
 
     return (
         <div className="timer-container bg-text" data-bg-text="text">
-            <h1 id="timer" className="timer paused"><span className={isBreak ? "relax" : "focus"}>{isBreak ? "Relax for" : "Focus for"}</span> {secondsToString()}</h1>
+            <h1 id="timer" className="timer paused"><span className={isBreak ? "relax" : "focus"}>{isBreak ? "Relax" : "Focus"}</span> {secondsToString()}</h1>
             <div className="grow">
                 {/* <img className="teacup-image" src="/teacup2.png" alt="teacup"></img> */}
 
-                <Wave className="wave" fill='#923c01'
+                <Wave className="wave" fill='#C58E4C'
                     paused={false}
                     options={{
                         height: waveHeight,
@@ -58,7 +58,7 @@ function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer
                 </div>
                 <div className="skip">
                     <button className="button is-info is-outlined is-rounded is-large" onClick={skipTimer}>
-                        <i className="fa fa-solid fa-rotate-right"></i>
+                        <i className="fa fa-solid fa-forward"></i>
                         Skip
                     </button>
                 </div>
