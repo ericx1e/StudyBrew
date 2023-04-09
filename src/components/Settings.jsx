@@ -7,17 +7,17 @@ import 'firebase/compat/auth';
 import 'firebase/compat/analytics';
 import 'firebase/compat/functions'
 import { useAuthState} from 'react-firebase-hooks/auth'
-function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate }) {
+function Settings({ initialTime,initialVolume, initialBreakTime, onTimerUpdate, onBreakUpdate,onVolumeUpdate }) {
     initialTime = parseInt(initialTime);
     initialTime = Math.max(1, initialTime);
     initialTime = Math.min(59, initialTime);
     initialBreakTime = parseInt(initialBreakTime);
+    initialVolume = parseInt(initialVolume*100)
     initialBreakTime = Math.max(1, initialBreakTime);
     initialBreakTime = Math.min(59, initialBreakTime);
-    const [ambientNoise, setAmbientNoise] = useState(50);
     const [timerLength, setTimerLength] = useState(initialTime);
     const [breakLength, setBreakLength] = useState(initialBreakTime);
-    const [volume, setVolume] = useState(75);
+    const [volume, setVolume] = useState(initialVolume);
 
 
 
@@ -73,21 +73,26 @@ firebase.initializeApp({
             onBreakUpdate(parseInt(event.target.value) * 60);
         }
     }
-
+    const onVolumeChange = (event) => {
+        setVolume(event.target.value);
+        if(event.target.value) {
+            onVolumeUpdate(parseInt(event.target.value));
+        }
+    }
     return (
         <div className="settings-card">
             <div className="settings-card-content">
                 <div className="input-wrapper">
-                    <label htmlFor="ambientNoise">Ambient Noise</label>
+                    <label htmlFor="volume">Volume</label>
                     <div className='slider'>
-                        <p>{ambientNoise}</p>
+                        <p>{volume}</p>
                         <input
                             className="range"
                             type="range"
                             min="0"
                             max="100"
-                            value={ambientNoise}
-                            onChange={(e) => setAmbientNoise(e.target.value)}
+                            value={volume}
+                            onChange={onVolumeChange}
                             id="ambientNoise"
                             name="ambientNoise"
                         />

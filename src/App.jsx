@@ -21,6 +21,7 @@ function App() {
   const [isBreakTime, setIsBreakTime] = useState(false);
   const [done, setDone] = useState(false);
   const [initialTime, setInitialTime] = useState(6);
+  const [initialVolume, setInitialVolume] = useState(.5);
   const [initialBreakTime, setInitialBreakTime] = useState(3);
   const [tab, setTab] = useState("timer");
 
@@ -107,6 +108,7 @@ function App() {
   }
   const onTimerEnd = () => {
     audioRef.current.currentTime = 0;
+    audioRef.current.volume = initialVolume
     audioRef.current.play();
     if (!isBreakTime && isRunning && !done && initialTime > 0 && user) {
       // console.log("saving time", initialTime)
@@ -145,6 +147,10 @@ function App() {
     }
     // resetTimer();
   }
+  const onVolumeUpdate = (newVolume) => {
+    newVolume = parseInt(newVolume);
+    setInitialVolume(newVolume/100);
+  }
 
   useEffect(() => {
     if (seconds == 0) {
@@ -168,7 +174,7 @@ function App() {
       content = <User />
       break;
     case "settings":
-      content = <Settings initialTime={initialTime / 60} initialBreakTime={initialBreakTime / 60} onTimerUpdate={onTimerUpdate} onBreakUpdate={onBreakUpdate} />
+      content = <Settings initialVolume = {initialVolume} initialTime={initialTime / 60} initialBreakTime={initialBreakTime / 60} onTimerUpdate={onTimerUpdate} onBreakUpdate={onBreakUpdate} onVolumeUpdate={onVolumeUpdate} />
       break;
     case "about":
       content = <About />
