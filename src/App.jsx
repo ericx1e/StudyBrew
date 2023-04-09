@@ -77,8 +77,19 @@ function App() {
     if (document.getElementById("timer")) {
       document.getElementById("timer").classList.add("paused");
     }
-    
+
   };
+
+  const skipTimer = () => {
+    resetTimer();
+    if (!isBreakTime) {
+      setSeconds(initialBreakTime);
+    } else {
+      setSeconds(initialTime);
+    }
+    setIsBreakTime(!isBreakTime);
+  }
+
   function SaveTime(hours) {
 
     const uid = auth.currentUser.uid;
@@ -148,9 +159,9 @@ function App() {
   switch (tab) {
     case "timer":
       if (isBreakTime) {
-        content = <Timer seconds={seconds} isBreak={true} initialTime={initialBreakTime} isRunning={isRunning} startTimer={startTimer} stopTimer={stopTimer} resetTimer={resetTimer} />
+        content = <Timer seconds={seconds} isBreak={true} initialTime={initialBreakTime} isRunning={isRunning} startTimer={startTimer} stopTimer={stopTimer} resetTimer={resetTimer} skipTimer={skipTimer} />
       } else {
-        content = <Timer seconds={seconds} isBreak={false} initialTime={initialTime} isRunning={isRunning} startTimer={startTimer} stopTimer={stopTimer} resetTimer={resetTimer} />
+        content = <Timer seconds={seconds} isBreak={false} initialTime={initialTime} isRunning={isRunning} startTimer={startTimer} stopTimer={stopTimer} resetTimer={resetTimer} skipTimer={skipTimer} />
       }
       break;
     case "user":

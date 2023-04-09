@@ -73,9 +73,9 @@
 
 
 .start-stop {
-    float:right;
+    float: right;
     width: 22vw;
-    height:50vh;
+    height: 50vh;
     padding-right: 10vw;
     padding-top: 5vh;
 }
@@ -85,6 +85,16 @@ i {
 }
 
 .start {
+    float: center;
+    padding-bottom: 3vh;
+}
+
+.stop {
+    float: center;
+    padding-bottom: 3vh;
+}
+
+.skip {
     float: center;
     padding-bottom: 3vh;
 }
@@ -99,26 +109,16 @@ i {
     font-weight: 1000;
     transition: opacity 0.5s ease-in-out;
 }
+
 #status {
     font-size: 10rem;
 }
 
 .focus {
-    opacity: 0.1;
     color: rgb(99, 135, 0);
 }
+
 .relax {
-    opacity: 0.1;
-    color: rgb(0, 81, 135);
-}
-
-.focus.show {
-    opacity: 0.9;
-    color: rgb(99, 135, 0);
-}
-
-.relax.show {
-    opacity: 0.9;
     color: rgb(0, 81, 135);
 }
 

@@ -3,7 +3,7 @@ import Wave from 'react-wavify'
 import "bulma/css/bulma.css"
 import "../sass/mystyles.scss"
 
-function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer, resetTimer }) {
+function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer, resetTimer, skipTimer }) {
 
     const minWaveHeight = 200;
 
@@ -17,7 +17,7 @@ function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer
 
     return (
         <div className="timer-container bg-text" data-bg-text="text">
-            <h1 id="timer" className="timer paused">{isBreak ? "Relax for" : "Focus for"} {secondsToString()}</h1>
+            <h1 id="timer" className="timer paused"><span className={isBreak ? "relax" : "focus"}>{isBreak ? "Relax for" : "Focus for"}</span> {secondsToString()}</h1>
             <div className="grow">
                 {/* <img className="teacup-image" src="/teacup2.png" alt="teacup"></img> */}
 
@@ -32,7 +32,7 @@ function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer
                 />
             </div>
             <div className="cup">
-                
+
             </div>
             <div className="start-stop">
                 {isRunning && <div className="drop"></div>}
@@ -56,9 +56,14 @@ function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer
                         Reset
                     </button>
                 </div>
-                
+                <div className="skip">
+                    <button className="button is-info is-outlined is-rounded is-large" onClick={skipTimer}>
+                        <i className="fa fa-solid fa-rotate-right"></i>
+                        Skip
+                    </button>
+                </div>
             </div>
-            
+
         </div>
     );
 }
