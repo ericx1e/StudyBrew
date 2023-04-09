@@ -59,7 +59,7 @@ function TableRow(props) {
 
 
 function DisplayStats() {
-  const uid = auth.currentUser;
+  const uid = auth.currentUser.uid;
   const userRef = firestore.collection("studysessions");
   const query = userRef.where("uid", "==", auth.currentUser.uid);
   const [sessions] = useCollectionData(query);
