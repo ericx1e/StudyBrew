@@ -35,13 +35,14 @@ const functions = firebase.functions();
 
 function TableRow(props) {
   const item = props.session;
+  console.log(item.sesssionstudycount)
   return (
     <tr>
       <td>
         {item.time && item.time.toDate().toDateString()}
       </td>
       <td>
-        {item.sessionstudycount && item.sessionstudycount}
+        {item.sesssionstudycount}
       </td>
       <td>
         {item.time && item.time.toDate().toLocaleTimeString('en-US')}
@@ -98,16 +99,7 @@ function DisplayStats() {
     </div>
   )
 }
-export function SaveTime(hours) {
-  const studysession = firestore.collection("studysessions");
-  const uid = auth.currentUser;
 
-  studysession.add({
-    sesssionstudycount: hours,
-    time: firebase.firestore.FieldValue.serverTimeStamp(),
-    uid,
-  })
-}
 
 function SignIn() {
 
