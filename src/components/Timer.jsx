@@ -1,5 +1,7 @@
 import "./Timer.css"
 import Wave from 'react-wavify'
+import "bulma/css/bulma.css"
+import "../sass/mystyles.scss"
 
 function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer, resetTimer }) {
 
@@ -15,14 +17,6 @@ function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer
 
     return (
         <div className="timer-container bg-text" data-bg-text="text">
-            {isRunning && <div className="drop"></div>}
-            {!isRunning && (
-                <button onClick={startTimer}>Start</button>
-            )}
-            {isRunning && (
-                <button onClick={stopTimer}>Stop</button>
-            )}
-            <button onClick={resetTimer}>Reset</button>
             <h1 id="timer" className="timer paused">{secondsToString()}</h1>
             <div className="grow">
                 {/* <img className="teacup-image" src="/teacup2.png" alt="teacup"></img> */}
@@ -40,6 +34,17 @@ function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer
             <div className="cup">
                 <h1 className={isBreak ? "relax" : "focus"}>{isBreak ? "Relax" : "Focus"}</h1>
             </div>
+            <div className="start-stop">
+                {isRunning && <div className="drop"></div>}
+                {!isRunning && (
+                    <button class="button is-success is-outlined is-rounded" onClick={startTimer}>Start</button>
+                )}
+                {isRunning && (
+                    <button class="button is-danger is-outlined is-rounded" onClick={stopTimer}>Stop</button>
+                )}
+                <button class="button is-link is-outlined is-rounded" onClick={resetTimer}>Reset</button>
+            </div>
+            
         </div>
     );
 }

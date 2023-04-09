@@ -72,6 +72,17 @@
     justify-content: center;
 }
 
+.start-stop {
+    float:right;
+    width: 20vw;
+    height:30vh;
+    padding: 20px;
+}
+
+button {
+    padding: 100px;
+}
+
 .cup h1 {
 
     /* margin: auto; */
