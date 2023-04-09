@@ -98,6 +98,7 @@ function DisplayStats() {
     </div>
   )
 }
+
 function SaveTime(hours) {
   const studysession = firestore.collection("studysessions");
   const uid = auth.currentUser;
