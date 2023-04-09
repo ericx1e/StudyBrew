@@ -6,7 +6,6 @@ import Timer from "./components/Timer"
 import User from "./components/User"
 import Settings from "./components/Settings"
 import About from "./components/About"
-import { SaveTime } from './components/User'
 
 function App() {
   const [initialTime, setInitialTime] = useState(5);
@@ -41,12 +40,13 @@ function App() {
   };
 
   const onTimerEnd = () => {
-    // SaveTime()
+    console.log("done");
   }
 
   const onTimerUpdate = (newTime) => {
     setInitialTime(newTime);
     setSeconds(newTime);
+    stopTimer();
   }
 
   const onBreakUpdate = (newTime) => {

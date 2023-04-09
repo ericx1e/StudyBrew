@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import "./Settings.css"
 import "bulma/css/bulma.css"
-function Settings({ initialTime, initialBreakTime, onTimerSubmit, onBreakSubmit }) {
+function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate }) {
     const [ambientNoise, setAmbientNoise] = useState(50);
     const [timerLength, setTimerLength] = useState(initialTime);
     const [breakLength, setBreakLength] = useState(initialBreakTime);
@@ -31,17 +31,17 @@ function Settings({ initialTime, initialBreakTime, onTimerSubmit, onBreakSubmit 
                 <div className="input-wrapper">
                     <label htmlFor="ambientNoise">Ambient Noise</label>
                     <div className='slider'>
-                    <p>{ambientNoise}</p>
-                    <input
-                        className="range"
-                        type="range"
-                        min="0"
-                        max="100"
-                        value={ambientNoise}
-                        onChange={(e) => setAmbientNoise(e.target.value)}
-                        id="ambientNoise"
-                        name="ambientNoise"
-                    />
+                        <p>{ambientNoise}</p>
+                        <input
+                            className="range"
+                            type="range"
+                            min="0"
+                            max="100"
+                            value={ambientNoise}
+                            onChange={(e) => setAmbientNoise(e.target.value)}
+                            id="ambientNoise"
+                            name="ambientNoise"
+                        />
                     </div>
                 </div>
                 <div className="input-wrapper">
@@ -52,7 +52,7 @@ function Settings({ initialTime, initialBreakTime, onTimerSubmit, onBreakSubmit 
                         min="1"
                         max="60"
                         value={timerLength}
-                        onChange={(e) => setTimerLength(e.target.value)}
+                        onChange={onTimerChange}
                         id="timerLength"
                         name="timerLength"
                     />
@@ -65,7 +65,7 @@ function Settings({ initialTime, initialBreakTime, onTimerSubmit, onBreakSubmit 
                         min="1"
                         max="60"
                         value={breakLength}
-                        onChange={(e) => setBreakLength(e.target.value)}
+                        onChange={onBreakChange}
                         id="breakLength"
                         name="breakLength"
                     />
