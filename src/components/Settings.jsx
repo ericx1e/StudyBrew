@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import "./Settings.css"
 import "bulma/css/bulma.css"
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
+import 'firebase/compat/analytics';
+import 'firebase/compat/functions'
 function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate }) {
     initialTime = parseInt(initialTime);
     initialTime = Math.max(1, initialTime);
@@ -12,6 +17,30 @@ function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate 
     const [timerLength, setTimerLength] = useState(initialTime);
     const [breakLength, setBreakLength] = useState(initialBreakTime);
     const [volume, setVolume] = useState(75);
+
+
+
+    // Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+firebase.initializeApp({
+    apiKey: "AIzaSyBsUxBOw63CIa683DKZop2JnWh1fO6E0y8",
+    authDomain: "studybrew-638f3.firebaseapp.com",
+    projectId: "studybrew-638f3",
+    storageBucket: "studybrew-638f3.appspot.com",
+    messagingSenderId: "624980619209",
+    appId: "1:624980619209:web:36bc2e08fd7011cc7c4218",
+    measurementId: "G-NKR5F743C6"
+  });
+  
+  // Initialize Firebase
+  const auth = firebase.auth();
+  const firestore = firebase.firestore();
+  const analytics = firebase.analytics();
+  const functions = firebase.functions();
+
+    const uid = auth.currentUser.uid;
+    const userRef = firestore.collection("studysessions");
+    const query = userRef.where("uid", "==", auth.currentUser.uid);
 
     const onTimerChange = (event) => {
         setTimerLength(event.target.value);
@@ -73,6 +102,18 @@ function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate 
                     />
                 </div>
             </div>
+                    <button className="button" onClick={() => {
+                        const userProfile = firestore.collection("data").doc(uid);
+                        userProfile.set({
+                            studyhours: 0,
+                          })
+                query.get().then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                    // doc.data() is never undefined for query doc snapshots
+                    doc.ref.delete();
+                    });
+                })
+                }}>Clear</button>
         </div>
     );
 }
