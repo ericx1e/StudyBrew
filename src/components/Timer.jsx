@@ -5,7 +5,7 @@ import "../sass/mystyles.scss"
 
 function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer, resetTimer, skipTimer }) {
 
-    const minWaveHeight = 200;
+    const minWaveHeight = 220;
 
     const secondsToString = () => {
         const m = parseInt(seconds / 60);
@@ -53,7 +53,7 @@ function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer
                 <div className="stop">
                     <button className="button is-link is-outlined is-rounded is-large" onClick={resetTimer}>
                         <i className="fa fa-solid fa-rotate-right"></i>
-                        Reset 
+                        Reset
                     </button>
                 </div>
                 <div className="skip">

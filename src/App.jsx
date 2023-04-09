@@ -21,8 +21,8 @@ function App() {
   const [isBreakTime, setIsBreakTime] = useState(false);
   const [done, setDone] = useState(false);
   const [initialTime, setInitialTime] = useState(25 * 60);
-  const [initialVolume, setInitialVolume] = useState(5 * 60);
-  const [initialBreakTime, setInitialBreakTime] = useState(3);
+  const [initialVolume, setInitialVolume] = useState(.5);
+  const [initialBreakTime, setInitialBreakTime] = useState(5 * 60);
   const [tab, setTab] = useState("timer");
 
   const [seconds, setSeconds] = useState(initialTime);
