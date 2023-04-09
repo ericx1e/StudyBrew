@@ -12,6 +12,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/analytics';
 import 'firebase/compat/functions'
 import { increment } from 'firebase/firestore'
+import { useAuthState } from 'react-firebase-hooks/auth'
 function App() {
   const [isBreakTime, setIsBreakTime] = useState(false);
   const [done, setDone] = useState(false);
@@ -40,6 +41,7 @@ function App() {
   const firestore = firebase.firestore();
   const analytics = firebase.analytics();
   const functions = firebase.functions();
+  const [user] = useAuthState(auth);
 
 
   const startTimer = () => {
@@ -89,7 +91,7 @@ function App() {
     })
   }
   const onTimerEnd = () => {
-    if (!isBreakTime && isRunning && !done && initialTime > 0) {
+    if (!isBreakTime && isRunning && !done && initialTime > 0 && user) {
       console.log("saving time", initialTime)
       SaveTime(+((initialTime / 60).toFixed(2))); //Converts seconds to minutes and rounds to two decimals
       setDone(true);
