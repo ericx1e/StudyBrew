@@ -193,8 +193,8 @@ function App() {
           <ul>
             <li className={tab == "timer" ? "is-active" : ""}>
               <a className="aaa" onClick={() => setTab("timer")}>
-                <span className="icon is-small"><i className="fa fa-regular fa-hourglass" aria-hidden="true"></i></span>
-                <span className="text">Timer</span>
+                <span className="icon is-small"><i className="fa fa-solid fa-mug-hot" aria-hidden="true"></i></span>
+                <span className="text">Brew</span>
               </a>
             </li>
             <li className={tab == "user" ? "is-active" : ""}>
