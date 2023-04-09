@@ -125,7 +125,9 @@ function User() {
     <div className="user-page">
       <div className='header'>{user ? <SignOut className="sign-button" /> : <SignIn className="sign-button" />}</div>
       <div className='col-left'>
-        <h1 className={user ? "text-signed-in" : "text-signed-out"}>{user ? auth.currentUser.displayName : "Sign In To View Your Studying Stats"}</h1>
+        <h1 className={user ? "text-signed-in" : "text-signed-out"}>
+          {user ? auth.currentUser.displayName : "Sign in to view your studying stats"}
+          </h1>
 
         {user ? <DisplayStats /> : <></>}
       </div>
