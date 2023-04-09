@@ -63,7 +63,7 @@ function DisplayStats() {
   const userRef = firestore.collection("studysessions");
   const query = userRef.where("uid", "==", auth.currentUser.uid);
   const [sessions] = useCollectionData(query);
-  const profileRef = firestore.collection("data").doc("Wvdz5LGfXtSgXFB8BnwqTaZccZF3");
+  const profileRef = firestore.collection("data").doc(uid);
   const userProfile = useDocumentData(profileRef);
   console.log(userProfile);
   return (
