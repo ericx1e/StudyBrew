@@ -17,7 +17,7 @@ import { doc, getDocs } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-firebase.initializeApp ({
+firebase.initializeApp({
   apiKey: "AIzaSyBsUxBOw63CIa683DKZop2JnWh1fO6E0y8",
   authDomain: "studybrew-638f3.firebaseapp.com",
   projectId: "studybrew-638f3",
@@ -65,14 +65,14 @@ function DisplayStats() {
   const query = userRef.where("uid", "==", auth.currentUser.uid);
   const [sessions] = useCollectionData(query);
   const userQuery = firestore.collection("data").where("uid", "==", auth.currentUser.uid)
-  const [userProfile] =  useCollectionData(userQuery)
+  const [userProfile] = useCollectionData(userQuery)
   return (
-    <div className= "stat-display">
-      {userProfile && userProfile.map(user =><Hourcount key ={user.uid} user= {user}/>)}
-    <div className="table-container-container">
-      <div className="table-contain">
-        <table className="table">
-          <thead>
+    <div className="stat-display">
+      {userProfile && userProfile.map(user => <Hourcount key={user.uid} user={user} />)}
+      <div className="table-container-container">
+        <div className="table-contain">
+          <table className="table">
+            <thead>
               <tr>
                 <th>
                   Date
@@ -87,18 +87,18 @@ function DisplayStats() {
                   End Time
                 </th>
               </tr>
-          </thead>
-          <tbody>
-            
-            {sessions && sessions.map(item => <TableRow key = {item.time} session = {item} />)}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+
+              {sessions && sessions.map(item => <TableRow key={item.time} session={item} />)}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
     </div>
   )
 }
-function SaveTime(hours) {
+export function SaveTime(hours) {
   const studysession = firestore.collection("studysessions");
   const uid = auth.currentUser;
 
@@ -107,8 +107,6 @@ function SaveTime(hours) {
     time: firebase.firestore.FieldValue.serverTimeStamp(),
     uid,
   })
-
-
 }
 
 function SignIn() {
@@ -136,22 +134,22 @@ function SignOut() {
 
 function User() {
 
-    const [user] = useAuthState(auth);
-    
-      
+  const [user] = useAuthState(auth);
 
-    return (
-        <div className="user-page">
-            <div className='header'>{user ? <SignOut className = "sign-button"/> : <SignIn className="sign-button"/>}</div>
-            <div className='col-left'>
-              <h1 className={user ? "text-signed-in" : "text-signed-out"}>{user ? auth.currentUser.displayName : "Sign In To View Your Studying Stats"}</h1>
-              
-              {user ? <DisplayStats /> : <></>}
-            </div>
-            <div className="col-right"><img className="tea-img" src="/tea_png.png" alt="image" /></div>
-        </div>
-    )
+
+
+  return (
+    <div className="user-page">
+      <div className='header'>{user ? <SignOut className="sign-button" /> : <SignIn className="sign-button" />}</div>
+      <div className='col-left'>
+        <h1 className={user ? "text-signed-in" : "text-signed-out"}>{user ? auth.currentUser.displayName : "Sign In To View Your Studying Stats"}</h1>
+
+        {user ? <DisplayStats /> : <></>}
+      </div>
+      <div className="col-right"><img className="tea-img" src="/tea_png.png" alt="image" /></div>
+    </div>
+  )
 }
-  
+
 
 export default User

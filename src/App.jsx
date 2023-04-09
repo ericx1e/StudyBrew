@@ -6,6 +6,7 @@ import Timer from "./components/Timer"
 import User from "./components/User"
 import Settings from "./components/Settings"
 import About from "./components/About"
+import { SaveTime } from './components/User'
 
 function App() {
   const [initialTime, setInitialTime] = useState(5);
@@ -27,7 +28,9 @@ function App() {
   const stopTimer = () => {
     clearInterval(intervalRef.current);
     setIsRunning(false);
-    document.getElementById("timer").classList.add("paused");
+    if (document.getElementById("timer")) {
+      document.getElementById("timer").classList.add("paused");
+    }
   };
 
   const resetTimer = () => {
@@ -38,13 +41,12 @@ function App() {
   };
 
   const onTimerEnd = () => {
-    alert("BITCH TIMES UP")
+    // SaveTime()
   }
 
   const onTimerUpdate = (newTime) => {
     setInitialTime(newTime);
-    console.log(newTime);
-    setSeconds(initialTime);
+    setSeconds(newTime);
   }
 
   const onBreakUpdate = (newTime) => {

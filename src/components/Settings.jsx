@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import "./Settings.css"
-function Settings({ initialTime, initialBreakTime, onTimerSubmit, onBreakSubmit }) {
+function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate }) {
     const [ambientNoise, setAmbientNoise] = useState(50);
     const [timerLength, setTimerLength] = useState(initialTime);
     const [breakLength, setBreakLength] = useState(initialBreakTime);
@@ -10,9 +10,18 @@ function Settings({ initialTime, initialBreakTime, onTimerSubmit, onBreakSubmit 
         event.preventDefault();
         onTimerSubmit(timerLength * 60)
     }
-    const handleBreakSubmit = (event) => {
-        event.preventDefault();
-        onBreakSubmit(breakLength * 60);
+    const onBreakChange = (event) => {
+        setBreakLength(event.target.value);
+        if (event.target.value) {
+            onBreakUpdate(event.target.value * 60);
+        }
+    }
+
+    const onTimerChange = (event) => {
+        setTimerLength(event.target.value);
+        if (event.target.value) {
+            onTimerUpdate(event.target.value * 60);
+        }
     }
 
     return (
@@ -34,36 +43,30 @@ function Settings({ initialTime, initialBreakTime, onTimerSubmit, onBreakSubmit 
                 </div>
             </div>
             <div className="input-wrapper">
-                <form>
-                    <label htmlFor="timerLength">Timer Length (in minutes)</label>
+                <label htmlFor="timerLength">Timer Length (in minutes)</label>
+                <input
+                    className="input"
+                    type="number"
+                    min="1"
+                    max="60"
+                    value={timerLength}
+                    onChange={onTimerChange}
+                    id="timerLength"
+                    name="timerLength"
+                />
+                <div className='input-wrapper'>
+                    <label htmlFor="breakLength">Break Length (in minutes)</label>
                     <input
                         className="input"
                         type="number"
                         min="1"
                         max="60"
-                        value={timerLength}
-                        onChange={(e) => setTimerLength(e.target.value)}
-                        onSubmit={handleTimerSubmit}
-                        id="timerLength"
-                        name="timerLength"
+                        value={breakLength}
+                        onChange={onBreakChange}
+                        id="breakLength"
+                        name="breakLength"
                     />
-                </form>
-                <form>
-                    <div className='input-wrapper'>
-                        <label htmlFor="breakLength">Break Length (in minutes)</label>
-                        <input
-                            className="input"
-                            type="number"
-                            min="1"
-                            max="60"
-                            value={breakLength}
-                            onChange={(e) => setBreakLength(e.target.value)}
-                            onSubmit={handleBreakSubmit}
-                            id="breakLength"
-                            name="breakLength"
-                        />
-                    </div>
-                </form>
+                </div>
             </div>
         </div >
     );
