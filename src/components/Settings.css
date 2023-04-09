@@ -1,24 +1,25 @@
-.input-container {
+.settings-card{
     display: flex;
     flex-direction: column;
     align-items: center;
-   
   }
   
   .input-wrapper {
     display: flex;
+    border-radius: 15px;
     flex-direction: column;
+    margin: 50px;
+    width: 85%;
     align-items: center;
-    margin: 2rem;
-    width: 100%
+    padding-bottom: 40px;
+    background-color: #f5ebd9;
   }
   
   .input-wrapper label {
-    margin-right: 10px;
+    padding-top: 15px;
     font-size: x-large;
   }
   .input-wrapper input {
-    margin-right: 10px;
     width: 10rem;
     height: 2rem;
     font-size: x-large;
@@ -43,4 +44,14 @@ input::-webkit-inner-spin-button {
    height: 2rem;
    width: 20rem;
   
+}
+.settings-card-content{
+  display: flex;
+  border-radius: 30px;
+  flex-direction: column;
+  align-items: center;
+  width: 38%;
+  background-color: #6F491F;
+  color: #633A10;
+  margin-top: 50px;
 }

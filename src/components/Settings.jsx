@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import "./Settings.css"
+import "bulma/css/bulma.css"
 function Settings({ initialTime, initialBreakTime, onTimerSubmit, onBreakSubmit }) {
     const [ambientNoise, setAmbientNoise] = useState(50);
     const [timerLength, setTimerLength] = useState(initialTime);
@@ -16,10 +17,11 @@ function Settings({ initialTime, initialBreakTime, onTimerSubmit, onBreakSubmit 
     }
 
     return (
-        <div className="input-container">
-            <div className="input-wrapper">
-                <label htmlFor="ambientNoise">Ambient Noise</label>
-                <div className='slider'>
+        <div className="settings-card">
+            <div className="settings-card-content">
+                <div className="input-wrapper">
+                    <label htmlFor="ambientNoise">Ambient Noise</label>
+                    <div className='slider'>
                     <p>{ambientNoise}</p>
                     <input
                         className="range"
@@ -31,10 +33,9 @@ function Settings({ initialTime, initialBreakTime, onTimerSubmit, onBreakSubmit 
                         id="ambientNoise"
                         name="ambientNoise"
                     />
+                    </div>
                 </div>
-            </div>
-            <div className="input-wrapper">
-                <form>
+                <div className="input-wrapper">
                     <label htmlFor="timerLength">Timer Length (in minutes)</label>
                     <input
                         className="input"
@@ -43,30 +44,27 @@ function Settings({ initialTime, initialBreakTime, onTimerSubmit, onBreakSubmit 
                         max="60"
                         value={timerLength}
                         onChange={(e) => setTimerLength(e.target.value)}
-                        onSubmit={handleTimerSubmit}
                         id="timerLength"
                         name="timerLength"
                     />
-                </form>
-                <form>
-                    <div className='input-wrapper'>
-                        <label htmlFor="breakLength">Break Length (in minutes)</label>
-                        <input
-                            className="input"
-                            type="number"
-                            min="1"
-                            max="60"
-                            value={breakLength}
-                            onChange={(e) => setBreakLength(e.target.value)}
-                            onSubmit={handleBreakSubmit}
-                            id="breakLength"
-                            name="breakLength"
-                        />
-                    </div>
-                </form>
+                </div>
+                <div className='input-wrapper'>
+                    <label htmlFor="breakLength">Break Length (in minutes)</label>
+                    <input
+                        className="input"
+                        type="number"
+                        min="1"
+                        max="60"
+                        value={breakLength}
+                        onChange={(e) => setBreakLength(e.target.value)}
+                        id="breakLength"
+                        name="breakLength"
+                    />
+                </div>
             </div>
-        </div >
+        </div>
     );
 }
+
 
 export default Settings
