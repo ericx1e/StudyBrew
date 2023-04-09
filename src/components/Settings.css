@@ -2,9 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url("bamboo-background-957w.png");
+    background-image: url("ohyeah.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     width: 100%;
     height: 100%;
   }
@@ -13,10 +13,10 @@
     display: flex;
     border-radius: 15px;
     flex-direction: column;
-    margin: 40px;
+    margin: 30px;
     width: 85%;
     align-items: center;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     background-color: #f5ebd9;
   }
   
@@ -58,5 +58,12 @@ input::-webkit-inner-spin-button {
   width: 38%;
   background-color: #bf9360;
   color: #633A10;
-  margin-top: 70px;
+  margin-top: 175px;
+}
+.button{
+  margin-top: 8px;
+  width: 250px;
+  border-radius: 10px;
+  color: WHITE;
+  background-color: rgb(203, 94, 94);
 }

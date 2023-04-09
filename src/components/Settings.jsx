@@ -57,7 +57,7 @@ firebase.initializeApp({
                     doc.ref.delete();
                     });
                 })
-                }}>Clear</button>
+                }}>Clear Session Log</button>
                 </div> 
         )
     }
