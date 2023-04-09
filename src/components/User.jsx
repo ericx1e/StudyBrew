@@ -90,7 +90,7 @@ function DisplayStats() {
             </thead>
             <tbody>
 
-              {sessions && sessions.map(item => <TableRow key={item.time} session={item} />)}
+              {sessions && sessions.sort((a,b) => a.time-b.time).map(item => <TableRow key={item.time} session={item} />)}
             </tbody>
           </table>
         </div>

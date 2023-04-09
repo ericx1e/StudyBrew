@@ -6,9 +6,10 @@
 .footer {
     background-color: #EECA81;
     bottom: 0;
-    padding: 0px 52px 0px;
+    padding: 0px 0px 0px;
     position: fixed;
-    width: 100%
+    width: 100%;
+    text-align: center;
 }
 
 .app {
@@ -20,6 +21,18 @@
 
 .tabs {
     background-color: #EECA81;
+}
+
+.aaa {
+  transition: background-color 0.3s;
+}
+
+.aaa:hover {
+  background-color: #daaa49;
+}
+
+.is-active {
+  background-color: #daaa49;
 }
 
 .body {
@@ -38,3 +51,5 @@
         /* add padding for the height of the hero-foot */
     }
 }
+
+
