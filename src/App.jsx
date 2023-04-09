@@ -11,6 +11,7 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import 'firebase/compat/analytics';
 import 'firebase/compat/functions'
+import { increment } from 'firebase/firestore'
 function App() {
   const [done, setDone] = useState(false);
   const [initialTime, setInitialTime] = useState(5);
@@ -67,14 +68,17 @@ function App() {
   };
   function SaveTime(hours) {
 
-    const studysession = firestore.collection("studysessions");
-    console.log(studysession)
     const uid = auth.currentUser.uid;
-
+    const studysession = firestore.collection("studysessions");
+    const userProfile = firestore.collection("data").doc(uid);
+    
     studysession.add({
       sessionstudycount: hours,
       time: firebase.firestore.Timestamp.now(),
       uid,
+    })
+    userProfile.update({
+      studyhours: increment(hours),
     })
   }
   const onTimerEnd = () => {
