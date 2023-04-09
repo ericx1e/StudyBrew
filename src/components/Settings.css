@@ -8,10 +8,10 @@
     display: flex;
     border-radius: 15px;
     flex-direction: column;
-    margin: 50px;
+    margin: 40px;
     width: 85%;
     align-items: center;
-    padding-bottom: 40px;
+    padding-bottom: 30px;
     background-color: #f5ebd9;
   }
   
@@ -51,7 +51,7 @@ input::-webkit-inner-spin-button {
   flex-direction: column;
   align-items: center;
   width: 38%;
-  background-color: #6F491F;
+  background-color: #bf9360;
   color: #633A10;
-  margin-top: 50px;
+  margin-top: 70px;
 }
