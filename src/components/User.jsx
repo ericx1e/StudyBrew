@@ -65,9 +65,9 @@ function DisplayStats() {
   console.log(userProfile);
   return (
     <div className="stat-display">
-      {<h3>Total Time Studying: {userProfile[0] && Math.round(userProfile[0].studyhours)} mins</h3>}
+      {<h3>Total Time Spent Studying: {userProfile[0] && Math.round(userProfile[0].studyhours)} mins</h3>}
       <div className="table-container-container">
-        <div className="table-contain">
+        <div className="table-container">
           <table className="table">
             <thead>
               <tr>
@@ -83,7 +83,6 @@ function DisplayStats() {
               </tr>
             </thead>
             <tbody>
-
               {sessions && sessions.sort((a, b) => a.time - b.time).map(item => <TableRow key={item.time} session={item} />)}
             </tbody>
           </table>
