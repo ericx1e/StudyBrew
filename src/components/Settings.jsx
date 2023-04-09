@@ -46,7 +46,7 @@ firebase.initializeApp({
     
         return(
         <div className= "input-wrapper">{}
-                    <button className="button" onClick={() => {
+                    <button className="clear-button" onClick={() => {
                         const userProfile = firestore.collection("data").doc(uid);
                         userProfile.set({ 
                             studyhours: 0,
