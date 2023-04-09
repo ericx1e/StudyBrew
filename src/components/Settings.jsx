@@ -12,7 +12,7 @@ function Settings() {
                 <div className='slider'>
                 <p>{ambientNoise}</p>
                 <input
-                    class="range"
+                    className="range"
                     type="range"
                     min="0"
                     max="100"
@@ -26,7 +26,7 @@ function Settings() {
             <div className="input-wrapper">
                 <label htmlFor="timerLength">Timer Length (in minutes)</label>
                 <input
-                    class="input"
+                    className="input"
                     type="number"
                     min="1"
                     max="60"
@@ -38,7 +38,7 @@ function Settings() {
                 <div className='input-wrapper'>
                     <label htmlFor="breakLength">Break Length (in minutes)</label>
                     <input
-                        class="input"
+                        className="input"
                         type="number"
                         min="1"
                         max="60"
