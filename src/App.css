@@ -24,10 +24,14 @@
 }
 
 .aaa {
-  transition: background-color 0.5s;
+  transition: background-color 0.3s;
 }
 
 .aaa:hover {
+  background-color: #daaa49;
+}
+
+.is-active {
   background-color: #daaa49;
 }
 
@@ -47,4 +51,5 @@
         /* add padding for the height of the hero-foot */
     }
 }
+
 
