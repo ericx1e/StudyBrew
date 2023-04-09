@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import "./Settings.css"
-function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate }) {
+import "bulma/css/bulma.css"
+function Settings({ initialTime, initialBreakTime, onTimerSubmit, onBreakSubmit }) {
     const [ambientNoise, setAmbientNoise] = useState(50);
     const [timerLength, setTimerLength] = useState(initialTime);
     const [breakLength, setBreakLength] = useState(initialBreakTime);
@@ -25,10 +26,11 @@ function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate 
     }
 
     return (
-        <div className="input-container">
-            <div className="input-wrapper">
-                <label htmlFor="ambientNoise">Ambient Noise</label>
-                <div className='slider'>
+        <div className="settings-card">
+            <div className="settings-card-content">
+                <div className="input-wrapper">
+                    <label htmlFor="ambientNoise">Ambient Noise</label>
+                    <div className='slider'>
                     <p>{ambientNoise}</p>
                     <input
                         className="range"
@@ -40,20 +42,21 @@ function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate 
                         id="ambientNoise"
                         name="ambientNoise"
                     />
+                    </div>
                 </div>
-            </div>
-            <div className="input-wrapper">
-                <label htmlFor="timerLength">Timer Length (in minutes)</label>
-                <input
-                    className="input"
-                    type="number"
-                    min="1"
-                    max="60"
-                    value={timerLength}
-                    onChange={onTimerChange}
-                    id="timerLength"
-                    name="timerLength"
-                />
+                <div className="input-wrapper">
+                    <label htmlFor="timerLength">Timer Length (in minutes)</label>
+                    <input
+                        className="input"
+                        type="number"
+                        min="1"
+                        max="60"
+                        value={timerLength}
+                        onChange={(e) => setTimerLength(e.target.value)}
+                        id="timerLength"
+                        name="timerLength"
+                    />
+                </div>
                 <div className='input-wrapper'>
                     <label htmlFor="breakLength">Break Length (in minutes)</label>
                     <input
@@ -62,14 +65,15 @@ function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate 
                         min="1"
                         max="60"
                         value={breakLength}
-                        onChange={onBreakChange}
+                        onChange={(e) => setBreakLength(e.target.value)}
                         id="breakLength"
                         name="breakLength"
                     />
                 </div>
             </div>
-        </div >
+        </div>
     );
 }
+
 
 export default Settings
