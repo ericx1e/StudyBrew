@@ -40,7 +40,7 @@ function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer
                     {!isRunning && (
                         <button className="button is-success is-outlined is-rounded is-large" onClick={startTimer}>
                             <i className="fa fa-solid fa-play"></i>
-                            Start
+                            Start&nbsp;
                         </button>
                     )}
                     {isRunning && (
@@ -53,13 +53,13 @@ function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer
                 <div className="stop">
                     <button className="button is-link is-outlined is-rounded is-large" onClick={resetTimer}>
                         <i className="fa fa-solid fa-rotate-right"></i>
-                        Reset
+                        Reset 
                     </button>
                 </div>
                 <div className="skip">
                     <button className="button is-info is-outlined is-rounded is-large" onClick={skipTimer}>
                         <i className="fa fa-solid fa-forward"></i>
-                        Skip
+                        Skip&nbsp;&nbsp;
                     </button>
                 </div>
             </div>
