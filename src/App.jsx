@@ -20,8 +20,8 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isBreakTime, setIsBreakTime] = useState(false);
   const [done, setDone] = useState(false);
-  const [initialTime, setInitialTime] = useState(6);
-  const [initialVolume, setInitialVolume] = useState(.5);
+  const [initialTime, setInitialTime] = useState(25 * 60);
+  const [initialVolume, setInitialVolume] = useState(5 * 60);
   const [initialBreakTime, setInitialBreakTime] = useState(3);
   const [tab, setTab] = useState("timer");
 
@@ -149,7 +149,7 @@ function App() {
   }
   const onVolumeUpdate = (newVolume) => {
     newVolume = parseInt(newVolume);
-    setInitialVolume(newVolume/100);
+    setInitialVolume(newVolume / 100);
   }
 
   useEffect(() => {
@@ -174,7 +174,7 @@ function App() {
       content = <User />
       break;
     case "settings":
-      content = <Settings initialVolume = {initialVolume} initialTime={initialTime / 60} initialBreakTime={initialBreakTime / 60} onTimerUpdate={onTimerUpdate} onBreakUpdate={onBreakUpdate} onVolumeUpdate={onVolumeUpdate} />
+      content = <Settings initialVolume={initialVolume} initialTime={initialTime / 60} initialBreakTime={initialBreakTime / 60} onTimerUpdate={onTimerUpdate} onBreakUpdate={onBreakUpdate} onVolumeUpdate={onVolumeUpdate} />
       break;
     case "about":
       content = <About />
