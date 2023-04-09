@@ -33,8 +33,12 @@ const firestore = firebase.firestore();
 const analytics = firebase.analytics();
 const functions = firebase.functions();
 
+
+
+
 function TableRow(props) {
   const item = props.session;
+  const initRef = firestore.collection("studysessions").doc(item.id)
   return (
     <tr>
       <td>
@@ -69,7 +73,15 @@ function DisplayStats() {
   return (
     <div className="stat-display">
       {userProfile && userProfile.map(user => <Hourcount key={user.uid} user={user} />)}
+      
       <div className="table-container-container">
+      <button className= "button"onClick={() => {
+          query.get().then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                  // doc.data() is never undefined for query doc snapshots
+                  doc.ref.delete();
+              });
+          })}}>Clear</button>
         <div className="table-contain">
           <table className="table">
             <thead>
@@ -89,7 +101,6 @@ function DisplayStats() {
               </tr>
             </thead>
             <tbody>
-
               {sessions && sessions.sort((a,b) => a.time-b.time).map(item => <TableRow key={item.time} session={item} />)}
             </tbody>
           </table>
