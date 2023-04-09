@@ -25,7 +25,7 @@
     table-layout: fixed;
     border-radius: 20px;
     border-collapse: collapse; 
-    
+    width: 30rem;
 }
 
 .stat-display h3{

@@ -65,7 +65,7 @@ function DisplayStats() {
   console.log(userProfile);
   return (
     <div className="stat-display">
-      {<h3>Total Time Studying: {userProfile[0] && Math.round(userProfile[0].studyhours)} mins</h3>}
+      {<h3>Total Time Spent Studying: {userProfile[0] && Math.round(userProfile[0].studyhours)} mins</h3>}
       <div className="table-container-container">
         <div className="table-container">
           <table className="table">
