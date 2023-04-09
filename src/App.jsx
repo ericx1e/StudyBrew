@@ -12,9 +12,10 @@ import 'firebase/compat/auth';
 import 'firebase/compat/analytics';
 import 'firebase/compat/functions'
 function App() {
+  const [isBreakTime, setIsBreakTime] = useState(false);
   const [done, setDone] = useState(false);
   const [initialTime, setInitialTime] = useState(5);
-  const [initialBreakTime, setInitialBreakTime] = useState(5 * 60);
+  const [initialBreakTime, setInitialBreakTime] = useState(2);
   const [tab, setTab] = useState("timer");
 
   const [seconds, setSeconds] = useState(initialTime);
@@ -56,11 +57,16 @@ function App() {
     }
   };
 
-  const resetTimer = () => {
+  const resetTimer = async () => {
     setDone(false);
     clearInterval(intervalRef.current);
     setIsRunning(false);
-    setSeconds(initialTime);
+    if (isBreakTime) {
+      setSeconds(initialBreakTime);
+    } else {
+      setSeconds(initialTime);
+    }
+
     if (document.getElementById("timer")) {
       document.getElementById("timer").classList.add("paused");
     }
@@ -68,7 +74,6 @@ function App() {
   function SaveTime(hours) {
 
     const studysession = firestore.collection("studysessions");
-    console.log(studysession)
     const uid = auth.currentUser.uid;
 
     studysession.add({
@@ -78,11 +83,19 @@ function App() {
     })
   }
   const onTimerEnd = () => {
-    if (isRunning && !done && initialTime > 0) {
+    if (!isBreakTime && isRunning && !done && initialTime > 0) {
       console.log("saving time", initialTime)
-      SaveTime(initialTime);
+      SaveTime(+((initialTime / 60).toFixed(2))); //Converts seconds to minutes and rounds to two decimals
       setDone(true);
     }
+
+    resetTimer();
+    if (!isBreakTime) {
+      setSeconds(initialBreakTime);
+    } else {
+      setSeconds(initialTime);
+    }
+    setIsBreakTime(!isBreakTime);
   }
 
   const onTimerUpdate = (newTime) => {
@@ -93,8 +106,8 @@ function App() {
   }
 
   const onBreakUpdate = (newTime) => {
-    setBreakInitialTime(newTime);
-    setSeconds(initialTime);
+    setInitialBreakTime(newTime);
+    setSeconds(newTime);
     // resetTimer();
   }
 
@@ -110,7 +123,11 @@ function App() {
 
   switch (tab) {
     case "timer":
-      content = <Timer seconds={seconds} initialTime={initialTime} isRunning={isRunning} startTimer={startTimer} stopTimer={stopTimer} resetTimer={resetTimer} />
+      if (isBreakTime) {
+        content = <Timer seconds={seconds} isBreak={true} initialTime={initialBreakTime} isRunning={isRunning} startTimer={startTimer} stopTimer={stopTimer} resetTimer={resetTimer} />
+      } else {
+        content = <Timer seconds={seconds} isBreak={false} initialTime={initialTime} isRunning={isRunning} startTimer={startTimer} stopTimer={stopTimer} resetTimer={resetTimer} />
+      }
       break;
     case "user":
       content = <User />

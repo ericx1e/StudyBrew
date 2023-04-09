@@ -55,7 +55,7 @@ function TableRow(props) {
 function Hourcount(props) {
   const user = props.user;
   return (
-    <h3>Total Time Studying:{user.studyhours}</h3>
+    <h3>Total Time Studied: {user.studyhours}</h3>
   )
 }
 
@@ -90,7 +90,7 @@ function DisplayStats() {
             </thead>
             <tbody>
 
-              {sessions && sessions.sort((a,b) => a.time-b.time).map(item => <TableRow key={item.time} session={item} />)}
+              {sessions && sessions.sort((a, b) => a.time - b.time).map(item => <TableRow key={item.time} session={item} />)}
             </tbody>
           </table>
         </div>
