@@ -71,6 +71,7 @@ function App() {
     if (document.getElementById("timer")) {
       document.getElementById("timer").classList.add("paused");
     }
+    
   };
   function SaveTime(hours) {
 

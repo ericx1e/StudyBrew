@@ -17,7 +17,7 @@ function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer
 
     return (
         <div className="timer-container bg-text" data-bg-text="text">
-            <h1 id="timer" className="timer paused">{secondsToString()}</h1>
+            <h1 id="timer" className="timer paused">{isBreak ? "Relax for" : "Focus for"} {secondsToString()}</h1>
             <div className="grow">
                 {/* <img className="teacup-image" src="/teacup2.png" alt="teacup"></img> */}
 
@@ -32,7 +32,7 @@ function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer
                 />
             </div>
             <div className="cup">
-                <h1 className={isBreak ? "relax" : "focus"}>{isBreak ? "Relax" : "Focus"}</h1>
+                
             </div>
             <div className="start-stop">
                 {isRunning && <div className="drop"></div>}
