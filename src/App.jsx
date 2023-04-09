@@ -12,11 +12,9 @@ import 'firebase/compat/auth';
 import 'firebase/compat/analytics';
 import 'firebase/compat/functions'
 import { increment } from 'firebase/firestore'
-<<<<<<< HEAD
-import alarm from "/alarm.mp3";
-=======
 import { useAuthState } from 'react-firebase-hooks/auth'
->>>>>>> 83511d8c4c7e9fec0df349bc73c301d6c63ec2b6
+
+
 function App() {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
