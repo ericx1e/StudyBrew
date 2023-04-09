@@ -13,7 +13,11 @@ import 'firebase/compat/analytics';
 import 'firebase/compat/functions'
 import { increment } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
+
+
 function App() {
+  const audioRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isBreakTime, setIsBreakTime] = useState(false);
   const [done, setDone] = useState(false);
   const [initialTime, setInitialTime] = useState(6);
@@ -80,7 +84,7 @@ function App() {
     const uid = auth.currentUser.uid;
     const studysession = firestore.collection("studysessions");
     const userProfile = firestore.collection("data").doc(uid);
-    
+
     studysession.add({
       sessionstudycount: hours,
       time: firebase.firestore.Timestamp.now(),
@@ -91,8 +95,10 @@ function App() {
     })
   }
   const onTimerEnd = () => {
+    audioRef.current.currentTime = 0;
+    audioRef.current.play();
     if (!isBreakTime && isRunning && !done && initialTime > 0 && user) {
-      console.log("saving time", initialTime)
+      // console.log("saving time", initialTime)
       SaveTime(+((initialTime / 60).toFixed(2))); //Converts seconds to minutes and rounds to two decimals
       setDone(true);
     }
@@ -160,7 +166,8 @@ function App() {
 
   return (
     <section className='app'>
-      <div className="body">
+      <audio ref={audioRef} src="./alarm.mp3" />
+      <div onClick={() => { audioRef.current.pause() }} className="body">
         {content}
       </div>
 
