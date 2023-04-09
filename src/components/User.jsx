@@ -50,9 +50,6 @@ function TableRow(props) {
       <td>
         {item.time && item.time.toDate().toLocaleTimeString('en-US')}
       </td>
-      <td>
-        {item.endtime && item.endtime.toDate().toLocaleTimeString('en-US')}
-      </td>
     </tr>
   )
 }
@@ -82,9 +79,6 @@ function DisplayStats() {
                 </th>
                 <th>
                   Start Time
-                </th>
-                <th>
-                  End Time
                 </th>
               </tr>
             </thead>
