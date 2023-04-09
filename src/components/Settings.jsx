@@ -6,6 +6,7 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import 'firebase/compat/analytics';
 import 'firebase/compat/functions'
+import { useAuthState} from 'react-firebase-hooks/auth'
 function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate }) {
     initialTime = parseInt(initialTime);
     initialTime = Math.max(1, initialTime);
@@ -37,11 +38,29 @@ firebase.initializeApp({
   const firestore = firebase.firestore();
   const analytics = firebase.analytics();
   const functions = firebase.functions();
-
-    const uid = auth.currentUser.uid;
+  const [user] =useAuthState(auth);
+    function ClearButton () {
+        const uid = auth.currentUser.uid;
     const userRef = firestore.collection("studysessions");
     const query = userRef.where("uid", "==", auth.currentUser.uid);
-
+    
+        return(
+        <div className= "input-wrapper">{}
+                    <button className="button" onClick={() => {
+                        const userProfile = firestore.collection("data").doc(uid);
+                        userProfile.set({ 
+                            studyhours: 0,
+                          })
+                query.get().then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                    // doc.data() is never undefined for query doc snapshots
+                    doc.ref.delete();
+                    });
+                })
+                }}>Clear</button>
+                </div> 
+        )
+    }
     const onTimerChange = (event) => {
         setTimerLength(event.target.value);
         if (event.target.value) {
@@ -101,19 +120,9 @@ firebase.initializeApp({
                         name="breakLength"
                     />
                 </div>
+                {user ?  <ClearButton />: <></>}
+                
             </div>
-                    <button className="button" onClick={() => {
-                        const userProfile = firestore.collection("data").doc(uid);
-                        userProfile.set({
-                            studyhours: 0,
-                          })
-                query.get().then((querySnapshot) => {
-                    querySnapshot.forEach((doc) => {
-                    // doc.data() is never undefined for query doc snapshots
-                    doc.ref.delete();
-                    });
-                })
-                }}>Clear</button>
         </div>
     );
 }
