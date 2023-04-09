@@ -12,6 +12,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/analytics';
 import 'firebase/compat/functions'
 function App() {
+  const [done, setDone] = useState(false);
   const [initialTime, setInitialTime] = useState(5);
   const [initialBreakTime, setInitialBreakTime] = useState(5 * 60);
   const [tab, setTab] = useState("timer");
@@ -56,10 +57,13 @@ function App() {
   };
 
   const resetTimer = () => {
+    setDone(false);
     clearInterval(intervalRef.current);
     setIsRunning(false);
-    setSeconds(totalTime);
-    document.getElementById("timer").classList.remove("paused");
+    setSeconds(initialTime);
+    if (document.getElementById("timer")) {
+      document.getElementById("timer").classList.add("paused");
+    }
   };
   function SaveTime(hours) {
 
@@ -74,13 +78,18 @@ function App() {
     })
   }
   const onTimerEnd = () => {
-    SaveTime(1)
+    if (isRunning && !done && initialTime > 0) {
+      console.log("saving time", initialTime)
+      SaveTime(initialTime);
+      setDone(true);
+    }
   }
 
   const onTimerUpdate = (newTime) => {
     setInitialTime(newTime);
     setSeconds(newTime);
-    stopTimer();
+    // resetTimer();
+    setDone(false);
   }
 
   const onBreakUpdate = (newTime) => {

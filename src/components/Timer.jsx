@@ -27,7 +27,7 @@ function Timer({ seconds, initialTime, isRunning, startTimer, stopTimer, resetTi
             <div className="grow">
                 {/* <img className="teacup-image" src="/teacup2.png" alt="teacup"></img> */}
 
-                <Wave className="wave" fill='#FFFFFF'
+                <Wave className="wave" fill='#923c01'
                     paused={false}
                     options={{
                         height: waveHeight,
