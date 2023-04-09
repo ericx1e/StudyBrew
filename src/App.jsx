@@ -8,7 +8,8 @@ import Settings from "./components/Settings"
 import About from "./components/About"
 
 function App() {
-  let initialTime = 5; //seconds
+  const [initialTime, setInitialTime] = useState(5);
+  const [initialBreakTime, setInitialBreakTime] = useState(5 * 60);
   const [tab, setTab] = useState("timer");
 
   const [seconds, setSeconds] = useState(initialTime);
@@ -40,6 +41,18 @@ function App() {
     alert("BITCH TIMES UP")
   }
 
+  const onTimerUpdate = (newTime) => {
+    setInitialTime(newTime);
+    console.log(newTime);
+    setSeconds(initialTime);
+  }
+
+  const onBreakUpdate = (newTime) => {
+    setBreakInitialTime(newTime);
+    setSeconds(initialTime);
+    // resetTimer();
+  }
+
   useEffect(() => {
     if (seconds == 0) {
       stopTimer();
@@ -58,7 +71,7 @@ function App() {
       content = <User />
       break;
     case "settings":
-      content = <Settings />
+      content = <Settings initialTime={initialTime / 60} initialbreakTime={initialBreakTime / 60} onTimerUpdate={onTimerUpdate} onBreakUpdate={onBreakUpdate} />
       break;
     case "about":
       content = <About />
