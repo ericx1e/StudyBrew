@@ -14,8 +14,8 @@ import 'firebase/compat/functions'
 function App() {
   const [isBreakTime, setIsBreakTime] = useState(false);
   const [done, setDone] = useState(false);
-  const [initialTime, setInitialTime] = useState(5);
-  const [initialBreakTime, setInitialBreakTime] = useState(2);
+  const [initialTime, setInitialTime] = useState(6);
+  const [initialBreakTime, setInitialBreakTime] = useState(3);
   const [tab, setTab] = useState("timer");
 
   const [seconds, setSeconds] = useState(initialTime);
@@ -99,15 +99,25 @@ function App() {
   }
 
   const onTimerUpdate = (newTime) => {
+    newTime = parseInt(newTime);
+    newTime = Math.max(60, newTime);
+    newTime = Math.min(59 * 60, newTime);
     setInitialTime(newTime);
-    setSeconds(newTime);
+    if (!isBreakTime) {
+      setSeconds(newTime);
+    }
     // resetTimer();
     setDone(false);
   }
 
   const onBreakUpdate = (newTime) => {
+    newTime = parseInt(newTime);
+    newTime = Math.max(1, newTime);
+    newTime = Math.min(59 * 60, newTime);
     setInitialBreakTime(newTime);
-    setSeconds(newTime);
+    if (isBreakTime) {
+      setSeconds(newTime);
+    }
     // resetTimer();
   }
 
@@ -133,7 +143,7 @@ function App() {
       content = <User />
       break;
     case "settings":
-      content = <Settings initialTime={initialTime / 60} initialbreakTime={initialBreakTime / 60} onTimerUpdate={onTimerUpdate} onBreakUpdate={onBreakUpdate} />
+      content = <Settings initialTime={initialTime / 60} initialBreakTime={initialBreakTime / 60} onTimerUpdate={onTimerUpdate} onBreakUpdate={onBreakUpdate} />
       break;
     case "about":
       content = <About />
@@ -151,25 +161,25 @@ function App() {
           <ul>
             <li className={tab == "timer" ? "is-active" : ""}>
               <a className="aaa" onClick={() => setTab("timer")}>
-                <span class="icon is-small"><i class="fa fa-regular fa-hourglass" aria-hidden="true"></i></span>
+                <span className="icon is-small"><i className="fa fa-regular fa-hourglass" aria-hidden="true"></i></span>
                 <span className="text">Timer</span>
               </a>
             </li>
             <li className={tab == "user" ? "is-active" : ""}>
               <a className="aaa" onClick={() => setTab("user")}>
-                <span class="icon is-small"><i class="fa fa-solid fa-user" aria-hidden="true"></i></span>
+                <span className="icon is-small"><i className="fa fa-solid fa-user" aria-hidden="true"></i></span>
                 <span className="text">User</span>
               </a>
             </li>
             <li className={tab == "settings" ? "is-active" : ""}>
               <a className="aaa" onClick={() => setTab("settings")}>
-                <span class="icon is-small"><i class="fa fa-solid fa-gear" aria-hidden="true"></i></span>
+                <span className="icon is-small"><i className="fa fa-solid fa-gear" aria-hidden="true"></i></span>
                 <span className="text">Settings</span>
               </a>
             </li>
             <li className={tab == "about" ? "is-active" : ""}>
               <a className="aaa" onClick={() => setTab("about")}>
-                <span class="icon is-small"><i class="fa fa-solid fa-question" aria-hidden="true"></i></span>
+                <span className="icon is-small"><i className="fa fa-solid fa-question" aria-hidden="true"></i></span>
                 <span className="text">About</span>
               </a>
             </li>
