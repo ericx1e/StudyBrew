@@ -11,7 +11,7 @@ import 'firebase/compat/functions'
 import "./User.css"
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useCollectionData, useDocumentData } from 'react-firebase-hooks/firestore';
 import { doc, getDocs } from 'firebase/firestore';
 
 
@@ -56,24 +56,19 @@ function TableRow(props) {
     </tr>
   )
 }
-function Hourcount(props) {
-  const user = props.user;
-  return (
-    <h3>Total Time Studied: {user.studyhours}</h3>
-  )
-}
+
 
 function DisplayStats() {
-
+  const uid = auth.currentUser.uid;
   const userRef = firestore.collection("studysessions");
   const query = userRef.where("uid", "==", auth.currentUser.uid);
   const [sessions] = useCollectionData(query);
-  const userQuery = firestore.collection("data").where("uid", "==", auth.currentUser.uid)
-  const [userProfile] = useCollectionData(userQuery)
+  const profileRef = firestore.collection("data").doc(uid);
+  const userProfile = useDocumentData(profileRef);
+  console.log(userProfile);
   return (
     <div className="stat-display">
-      {userProfile && userProfile.map(user => <Hourcount key={user.uid} user={user} />)}
-
+      {<h3>Total Time Studying:{userProfile[0] &&userProfile[0].studyhours}</h3>}
       <div className="table-container-container">
         <button className="button" onClick={() => {
           query.get().then((querySnapshot) => {

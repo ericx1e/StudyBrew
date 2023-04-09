@@ -2,26 +2,27 @@ import { useState } from 'react'
 import "./Settings.css"
 import "bulma/css/bulma.css"
 function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate }) {
+    initialTime = parseInt(initialTime);
+    initialTime = Math.max(1, initialTime);
+    initialTime = Math.min(59, initialTime);
+    initialBreakTime = parseInt(initialBreakTime);
+    initialBreakTime = Math.max(1, initialBreakTime);
+    initialBreakTime = Math.min(59, initialBreakTime);
     const [ambientNoise, setAmbientNoise] = useState(50);
     const [timerLength, setTimerLength] = useState(initialTime);
     const [breakLength, setBreakLength] = useState(initialBreakTime);
     const [volume, setVolume] = useState(75);
 
-    const handleTimerSubmit = (event) => {
-        event.preventDefault();
-        onTimerSubmit(timerLength * 60)
+    const onTimerChange = (event) => {
+        setTimerLength(event.target.value);
+        if (event.target.value) {
+            onTimerUpdate(parseInt(event.target.value) * 60);
+        }
     }
     const onBreakChange = (event) => {
         setBreakLength(event.target.value);
         if (event.target.value) {
-            onBreakUpdate(event.target.value * 60);
-        }
-    }
-
-    const onTimerChange = (event) => {
-        setTimerLength(event.target.value);
-        if (event.target.value) {
-            onTimerUpdate(event.target.value * 60);
+            onBreakUpdate(parseInt(event.target.value) * 60);
         }
     }
 
@@ -49,6 +50,7 @@ function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate 
                     <input
                         className="input"
                         type="number"
+                        pattern="[0-9]*"
                         min="1"
                         max="60"
                         value={timerLength}
@@ -76,4 +78,4 @@ function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate 
 }
 
 
-export default Settings
+export default Settings;
