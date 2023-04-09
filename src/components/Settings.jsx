@@ -11,9 +11,18 @@ function Settings({ initialTime, initialBreakTime, onTimerSubmit, onBreakSubmit 
         event.preventDefault();
         onTimerSubmit(timerLength * 60)
     }
-    const handleBreakSubmit = (event) => {
-        event.preventDefault();
-        onBreakSubmit(breakLength * 60);
+    const onBreakChange = (event) => {
+        setBreakLength(event.target.value);
+        if (event.target.value) {
+            onBreakUpdate(event.target.value * 60);
+        }
+    }
+
+    const onTimerChange = (event) => {
+        setTimerLength(event.target.value);
+        if (event.target.value) {
+            onTimerUpdate(event.target.value * 60);
+        }
     }
 
     return (
