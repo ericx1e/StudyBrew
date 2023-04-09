@@ -70,14 +70,6 @@ function DisplayStats() {
     <div className="stat-display">
       {<h3>Total Time Studying:{userProfile[0] &&userProfile[0].studyhours}</h3>}
       <div className="table-container-container">
-        <button className="button" onClick={() => {
-          query.get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-              // doc.data() is never undefined for query doc snapshots
-              doc.ref.delete();
-            });
-          })
-        }}>Clear</button>
         <div className="table-contain">
           <table className="table">
             <thead>
@@ -105,17 +97,6 @@ function DisplayStats() {
       </div>
     </div>
   )
-}
-
-function SaveTime(hours) {
-  const studysession = firestore.collection("studysessions");
-  const uid = auth.currentUser;
-
-  studysession.add({
-    sesssionstudycount: hours,
-    time: firebase.firestore.FieldValue.serverTimeStamp(),
-    uid,
-  })
 }
 
 function SignIn() {

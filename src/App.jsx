@@ -12,7 +12,11 @@ import 'firebase/compat/auth';
 import 'firebase/compat/analytics';
 import 'firebase/compat/functions'
 import { increment } from 'firebase/firestore'
+<<<<<<< HEAD
 import alarm from "/alarm.mp3";
+=======
+import { useAuthState } from 'react-firebase-hooks/auth'
+>>>>>>> 83511d8c4c7e9fec0df349bc73c301d6c63ec2b6
 function App() {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -43,6 +47,7 @@ function App() {
   const firestore = firebase.firestore();
   const analytics = firebase.analytics();
   const functions = firebase.functions();
+  const [user] = useAuthState(auth);
 
 
   const startTimer = () => {
@@ -93,7 +98,7 @@ function App() {
   const onTimerEnd = () => {
     audioRef.current.currentTime = 0;
     audioRef.current.play();
-    if (!isBreakTime && isRunning && !done && initialTime > 0) {
+    if (!isBreakTime && isRunning && !done && initialTime > 0 && user) {
       // console.log("saving time", initialTime)
       SaveTime(+((initialTime / 60).toFixed(2))); //Converts seconds to minutes and rounds to two decimals
       setDone(true);
