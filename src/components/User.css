@@ -4,7 +4,6 @@
     float: right;
     padding: 2vw;
     margin-left: auto;
-
 }
 
 .header {
@@ -26,6 +25,7 @@
     table-layout: fixed;
     border-radius: 20px;
     border-collapse: collapse; 
+    width: 30rem;
 }
 
 .stat-display h3{
@@ -34,8 +34,14 @@
     padding-bottom:1rem;
 }
 .table-container-container {
-    height: 60vh;
-    overflow-y: auto; /* add scroll bar for vertical overflow */
+     /* add scroll bar for vertical overflow */
+     width:40rem;
+}
+
+.table-container {
+    width: fit-content;
+    height: 30rem;
+    overflow-y: auto;
 }
 
 .text-signed-in {
