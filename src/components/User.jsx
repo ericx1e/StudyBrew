@@ -69,15 +69,15 @@ function DisplayStats() {
   return (
     <div className="stat-display">
       {<h3>Total Time Studying:{userProfile[0] &&userProfile[0].studyhours}</h3>}
-      
       <div className="table-container-container">
-      <button className= "button"onClick={() => {
+        <button className="button" onClick={() => {
           query.get().then((querySnapshot) => {
-              querySnapshot.forEach((doc) => {
-                  // doc.data() is never undefined for query doc snapshots
-                  doc.ref.delete();
-              });
-          })}}>Clear</button>
+            querySnapshot.forEach((doc) => {
+              // doc.data() is never undefined for query doc snapshots
+              doc.ref.delete();
+            });
+          })
+        }}>Clear</button>
         <div className="table-contain">
           <table className="table">
             <thead>
@@ -97,7 +97,8 @@ function DisplayStats() {
               </tr>
             </thead>
             <tbody>
-              {sessions && sessions.sort((a,b) => a.time-b.time).map(item => <TableRow key={item.time} session={item} />)}
+
+              {sessions && sessions.sort((a, b) => a.time - b.time).map(item => <TableRow key={item.time} session={item} />)}
             </tbody>
           </table>
         </div>
