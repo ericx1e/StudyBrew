@@ -151,22 +151,26 @@ function App() {
           <ul>
             <li className={tab == "timer" ? "is-active" : ""}>
               <a className="aaa" onClick={() => setTab("timer")}>
-                <span>Timer</span>
+                <span class="icon is-small"><i class="fa fa-regular fa-hourglass" aria-hidden="true"></i></span>
+                <span className="text">Timer</span>
               </a>
             </li>
             <li className={tab == "user" ? "is-active" : ""}>
               <a className="aaa" onClick={() => setTab("user")}>
-                <span>User</span>
+                <span class="icon is-small"><i class="fa fa-solid fa-user" aria-hidden="true"></i></span>
+                <span className="text">User</span>
               </a>
             </li>
             <li className={tab == "settings" ? "is-active" : ""}>
               <a className="aaa" onClick={() => setTab("settings")}>
-                <span>Settings</span>
+                <span class="icon is-small"><i class="fa fa-solid fa-gear" aria-hidden="true"></i></span>
+                <span className="text">Settings</span>
               </a>
             </li>
             <li className={tab == "about" ? "is-active" : ""}>
               <a className="aaa" onClick={() => setTab("about")}>
-                <span>About</span>
+                <span class="icon is-small"><i class="fa fa-solid fa-question" aria-hidden="true"></i></span>
+                <span className="text">About</span>
               </a>
             </li>
           </ul>

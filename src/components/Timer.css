@@ -101,8 +101,8 @@
     background-size: 115% auto;
     background-repeat: no-repeat;
 
-    -webkit-mask-image: url('/cupmask.png');
-    mask-image: url("/cupmask.png");
+    -webkit-mask-image: url('/new mask.png');
+    mask-image: url("/new mask.png");
     -webkit-mask-position: center;
     mask-position: center;
     -webkit-mask-size: 115% auto;
