@@ -24,6 +24,11 @@
     box-shadow: 10px 10px #4a4a4a; 
     border-style: solid;
     border-width: 2px;
+    transition: box-shadow .5s;
+}
+
+.card-content:hover {
+    box-shadow: 15px 15px #4a4a4a;
 }
 
 .card {

@@ -26,7 +26,7 @@ function About(){
         <div class="card">
           <div class="card-content">
             <div class="content">
-              To combat this, Studybrew removes the timer from view, putting a cup of tea in its
+              To combat this, StudyBrew removes the timer from view, putting a cup of tea in its
               place. Over the course of a study session, the length of which can still be set by
               the user, the teacup will be slowly filled, with the session ending when the cup 
               is fully filled. By hiding the timer, one can avoid the drop in productivity that 
