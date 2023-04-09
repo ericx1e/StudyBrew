@@ -7,6 +7,8 @@ import 'firebase/compat/auth';
 import 'firebase/compat/analytics';
 import 'firebase/compat/functions'
 import { useAuthState} from 'react-firebase-hooks/auth'
+import "../sass/mystyles.scss"
+
 function Settings({ initialTime, initialBreakTime, onTimerUpdate, onBreakUpdate }) {
     initialTime = parseInt(initialTime);
     initialTime = Math.max(1, initialTime);
@@ -46,7 +48,7 @@ firebase.initializeApp({
     
         return(
         <div className= "input-wrapper">{}
-                    <button className="clear-button" onClick={() => {
+                    <button className="button is-danger is-rounded is-small" onClick={() => {
                         const userProfile = firestore.collection("data").doc(uid);
                         userProfile.set({ 
                             studyhours: 0,
