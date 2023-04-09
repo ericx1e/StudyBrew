@@ -13,10 +13,10 @@
     display: flex;
     border-radius: 15px;
     flex-direction: column;
-    margin: 30px;
+    margin: 25px;
     width: 85%;
     align-items: center;
-    padding: 3px;
+    padding: 10px;
     background-color: #f5ebd9;
   }
   
@@ -58,10 +58,11 @@ input::-webkit-inner-spin-button {
   width: 38%;
   background-color: #bf9360;
   color: #633A10;
-  margin-top: 15vh;
+  margin-top: 20vh;
 }
 .clear-button{
   margin-top: 8px;
+  padding-top: 10px;
   width: 250px;
   border-radius: 10px;
   color: WHITE;
