@@ -36,13 +36,27 @@ function Timer({ seconds, isBreak, initialTime, isRunning, startTimer, stopTimer
             </div>
             <div className="start-stop">
                 {isRunning && <div className="drop"></div>}
-                {!isRunning && (
-                    <button class="button is-success is-outlined is-rounded" onClick={startTimer}>Start</button>
-                )}
-                {isRunning && (
-                    <button class="button is-danger is-outlined is-rounded" onClick={stopTimer}>Stop</button>
-                )}
-                <button class="button is-link is-outlined is-rounded" onClick={resetTimer}>Reset</button>
+                <div className="start">
+                    {!isRunning && (
+                        <button className="button is-success is-outlined is-rounded is-large" onClick={startTimer}>
+                            <i className="fa fa-solid fa-play"></i>
+                            Start
+                        </button>
+                    )}
+                    {isRunning && (
+                        <button className="button is-danger is-outlined is-rounded is-large" onClick={stopTimer}>
+                            <i className="fa fa-solid fa-pause"></i>
+                            Pause
+                        </button>
+                    )}
+                </div>
+                <div className="stop">
+                    <button className="button is-link is-outlined is-rounded is-large" onClick={resetTimer}>
+                        <i className="fa fa-solid fa-rotate-right"></i>
+                        Reset
+                    </button>
+                </div>
+                
             </div>
             
         </div>

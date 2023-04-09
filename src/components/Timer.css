@@ -74,13 +74,19 @@
 
 .start-stop {
     float:right;
-    width: 20vw;
-    height:30vh;
-    padding: 20px;
+    width: 22vw;
+    height:50vh;
+    padding-right: 10vw;
+    padding-top: 5vh;
 }
 
-button {
-    padding: 100px;
+i {
+    padding-right: 7px;
+}
+
+.start {
+    float: center;
+    padding-bottom: 3vh;
 }
 
 .cup h1 {
