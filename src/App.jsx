@@ -16,6 +16,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 
 
 function App() {
+  let date = new Date();
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isBreakTime, setIsBreakTime] = useState(false);
@@ -50,12 +51,26 @@ function App() {
 
 
   const startTimer = () => {
+    date = new Date();
+    const startTime = date.getTime();
+    console.log(startTime)
     setIsRunning(true);
     intervalRef.current = setInterval(() => {
-      setSeconds((prevSeconds) => prevSeconds - 1);
+      date = new Date();
+      console.log(startTime, date.getTime())
+      if (isBreakTime) {
+        setSeconds(initialBreakTime - parseInt((date.getTime() - startTime) / 1000));
+      } else {
+        setSeconds(initialTime - parseInt((date.getTime() - startTime) / 1000));
+      }
     }, 1000);
     document.getElementById("timer").classList.remove("paused");
   };
+
+  useEffect(() => {
+    document.title = isRunning ? (isBreakTime ? 'Relaxing...' : 'Brewing...') : 'StudyBrew';
+  }, [isRunning]);
+
 
   const stopTimer = () => {
     clearInterval(intervalRef.current);
@@ -128,23 +143,31 @@ function App() {
   const onTimerUpdate = (newTime) => {
     newTime = parseInt(newTime);
     newTime = Math.max(60, newTime);
-    newTime = Math.min(59 * 60, newTime);
+    newTime = Math.min(60 * 60, newTime);
     setInitialTime(newTime);
     if (!isBreakTime) {
       setSeconds(newTime);
     }
     // resetTimer();
+    // if (isRunning) {
+    //   startTimer();
+    // }
+    stopTimer();
     setDone(false);
   }
 
   const onBreakUpdate = (newTime) => {
     newTime = parseInt(newTime);
     newTime = Math.max(1, newTime);
-    newTime = Math.min(59 * 60, newTime);
+    newTime = Math.min(60 * 60, newTime);
     setInitialBreakTime(newTime);
     if (isBreakTime) {
       setSeconds(newTime);
     }
+    stopTimer();
+    // if (isRunning) {
+    //   startTimer();
+    // }
     // resetTimer();
   }
   const onVolumeUpdate = (newVolume) => {
@@ -153,7 +176,8 @@ function App() {
   }
 
   useEffect(() => {
-    if (seconds == 0) {
+    if (seconds <= 0) {
+      setSeconds(0);
       stopTimer();
       onTimerEnd();
     }
