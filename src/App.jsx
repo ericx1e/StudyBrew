@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useInterval } from 'react'
 import "bulma/css/bulma.css"
 import "./sass/mystyles.scss"
 import './App.css'
@@ -24,6 +24,7 @@ function App() {
   const [initialTime, setInitialTime] = useState(25 * 60);
   const [initialVolume, setInitialVolume] = useState(.5);
   const [initialBreakTime, setInitialBreakTime] = useState(5 * 60);
+  const [timeLeft, setTimeLeft] = useState(initialTime);
   const [tab, setTab] = useState("timer");
 
   const [seconds, setSeconds] = useState(initialTime);
@@ -49,21 +50,18 @@ function App() {
   const functions = firebase.functions();
   const [user] = useAuthState(auth);
 
-
   const startTimer = () => {
     date = new Date();
-    const startTime = date.getTime();
-    console.log(startTime)
+    let startTime = date.getTime();
     setIsRunning(true);
     intervalRef.current = setInterval(() => {
       date = new Date();
-      console.log(startTime, date.getTime())
-      if (isBreakTime) {
-        setSeconds(initialBreakTime - parseInt((date.getTime() - startTime) / 1000));
-      } else {
-        setSeconds(initialTime - parseInt((date.getTime() - startTime) / 1000));
-      }
-    }, 1000);
+      setSeconds(timeLeft - parseInt((date.getTime() - startTime) / 1000));
+      // if (isBreakTime) {
+      // } else {
+      //   setSeconds(initialTime - parseInt((date.getTime() - startTime) / 1000));
+      // }
+    }, 100);
     document.getElementById("timer").classList.remove("paused");
   };
 
@@ -72,7 +70,9 @@ function App() {
   }, [isRunning]);
 
 
+
   const stopTimer = () => {
+    setTimeLeft(seconds);
     clearInterval(intervalRef.current);
     setIsRunning(false);
     if (document.getElementById("timer")) {
@@ -86,8 +86,10 @@ function App() {
     setIsRunning(false);
     if (isBreakTime) {
       setSeconds(initialBreakTime);
+      setTimeLeft(initialBreakTime);
     } else {
       setSeconds(initialTime);
+      setTimeLeft(initialTime);
     }
 
     if (document.getElementById("timer")) {
@@ -100,8 +102,10 @@ function App() {
     resetTimer();
     if (!isBreakTime) {
       setSeconds(initialBreakTime);
+      setTimeLeft(initialBreakTime);
     } else {
       setSeconds(initialTime);
+      setTimeLeft(initialTime);
     }
     setIsBreakTime(!isBreakTime);
   }
@@ -134,8 +138,10 @@ function App() {
     resetTimer();
     if (!isBreakTime) {
       setSeconds(initialBreakTime);
+      setTimeLeft(initialBreakTime);
     } else {
       setSeconds(initialTime);
+      setTimeLeft(initialTime);
     }
     setIsBreakTime(!isBreakTime);
   }
@@ -147,12 +153,13 @@ function App() {
     setInitialTime(newTime);
     if (!isBreakTime) {
       setSeconds(newTime);
+      setTimeLeft(newTime);
     }
-    // resetTimer();
-    // if (isRunning) {
-    //   startTimer();
-    // }
-    stopTimer();
+    clearInterval(intervalRef.current);
+    setIsRunning(false);
+    if (document.getElementById("timer")) {
+      document.getElementById("timer").classList.add("paused");
+    }
     setDone(false);
   }
 
@@ -163,12 +170,14 @@ function App() {
     setInitialBreakTime(newTime);
     if (isBreakTime) {
       setSeconds(newTime);
+      setTimeLeft(newTime);
     }
-    stopTimer();
-    // if (isRunning) {
-    //   startTimer();
-    // }
-    // resetTimer();
+    clearInterval(intervalRef.current);
+    setIsRunning(false);
+    if (document.getElementById("timer")) {
+      document.getElementById("timer").classList.add("paused");
+    }
+    resetTimer();
   }
   const onVolumeUpdate = (newVolume) => {
     newVolume = parseInt(newVolume);

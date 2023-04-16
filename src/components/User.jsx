@@ -62,7 +62,7 @@ function DisplayStats() {
   const [sessions] = useCollectionData(query);
   const profileRef = firestore.collection("data").doc(uid);
   const userProfile = useDocumentData(profileRef);
-  console.log(userProfile);
+  // console.log(userProfile);
   return (
     <div className="stat-display">
       {<h3>Total Time Spent Studying: {userProfile[0] && Math.round(userProfile[0].studyhours)} mins</h3>}
@@ -127,7 +127,7 @@ function User() {
       <div className='col-left'>
         <h1 className={user ? "text-signed-in" : "text-signed-out"}>
           {user ? auth.currentUser.displayName : "Sign in to view your studying stats"}
-          </h1>
+        </h1>
 
         {user ? <DisplayStats /> : <></>}
       </div>

@@ -1,5 +1,5 @@
 .user-page {
-    height:100%;
+    height: 100%;
     width: 100%;
     float: right;
     padding: 2vw;
@@ -21,26 +21,27 @@
     float: right;
 }
 
-.table{
+.table {
     table-layout: fixed;
     border-radius: 20px;
-    border-collapse: collapse; 
+    border-collapse: collapse;
     width: 30rem;
 }
 
-.stat-display h3{
+.stat-display h3 {
     font-size: x-large;
     padding-left: 5px;
-    padding-bottom:1rem;
+    padding-bottom: 1rem;
 }
+
 .table-container-container {
-     /* add scroll bar for vertical overflow */
-     width:40rem;
+    /* add scroll bar for vertical overflow */
+    width: 40rem;
 }
 
 .table-container {
     width: fit-content;
-    height: 30rem;
+    height: 25rem;
     overflow-y: auto;
 }
 
@@ -65,23 +66,30 @@
 /* Set styles for small screens */
 @media (max-width: 600px) {
     .table-container-container {
-      height: auto; /* remove fixed height */
-      overflow-y: auto; /* hide scrollbar */
-      width: 100%;
+        height: auto;
+        /* remove fixed height */
+        overflow-y: auto;
+        /* hide scrollbar */
+        width: 100%;
     }
-    
-    
+
+
     .table td::before {
-      content: attr(data-label); /* add cell label */
-      float: left; /* float label to left */
-      font-weight: bold; /* bold label text */
+        content: attr(data-label);
+        /* add cell label */
+        float: left;
+        /* float label to left */
+        font-weight: bold;
+        /* bold label text */
     }
+
     .col-right {
-        display: none; /* hide the col-right class */
-      }
-      .col-left {
+        display: none;
+        /* hide the col-right class */
+    }
+
+    .col-left {
         width: 100%;
         float: left;
     }
-  }
-  
+}
