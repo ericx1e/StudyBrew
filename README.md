@@ -2,7 +2,7 @@ https://studybrew.netlify.app
 
 
 
-#Inspiration
+# Inspiration
 We started off with the goal to make something we could really use. As college students, we identified a common problem between all of us. While using a normal timer, we often found ourselves counting the seconds as we approached the end of a session. The daunting numbers made us lose motivation, ending our studying earlier than we originally intended to. To combat this, we tried to find an alternative way to display progress that reminds of how far we have come while reducing potential anxiety. Our solution was tea: replacing the timer with the pouring of tea.
 
 #**What it does**
