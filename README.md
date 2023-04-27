@@ -1,7 +1,8 @@
-# Link to Website
-
-https://studybrew.netlify.app 
-
+<h3 align="center">
+<a href="https://wordbord.com">
+<img src="public/tea_png.png" alt="Logo" width="300px">
+</a>
+</h3>
 
 
 # Inspiration
